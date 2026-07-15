@@ -22,6 +22,12 @@ type Question = {
   feedback: string;
 };
 
+type MatchPair = {
+  id: string;
+  term: string;
+  description: string;
+};
+
 type Hotspot = {
   id: string;
   label: string;
@@ -48,12 +54,21 @@ type Location = {
     questions: Question[];
     xp: number;
   };
+  wrapUp?: {
+    title: string;
+    narration: string;
+    transition: string;
+    matchPrompt: string;
+    matches: MatchPair[];
+    xp: number;
+  };
 };
 
 type SavedProgress = {
   xp: number;
   completedLocations: string[];
   hotspotProgress: Record<string, string[]>;
+  wrapUpProgress: Record<string, boolean>;
   learnedTerms: string[];
   finalComplete: boolean;
 };
@@ -300,6 +315,57 @@ const locations: Location[] = [
           ],
           correct: ["amount"],
           feedback: "Yield is the harvested amount from a field or crop.",
+        },
+      ],
+    },
+    wrapUp: {
+      title: "Crop Farm Wrap-Up",
+      narration:
+        "You've completed your visit to a Wisconsin crop farm. Along the way, you learned how crop producers talk about planting, harvesting, crop rotation, grain storage, and soil health. These are all terms you're likely to hear during future conversations with producers. Next, you'll visit a dairy operation and discover how the terminology changes from one type of farm to another.",
+      transition:
+        "Great work. Now let's visit a dairy operation and learn some of the terminology commonly used by dairy producers.",
+      matchPrompt: "Match the term to its description.",
+      xp: 20,
+      matches: [
+        {
+          id: "crop-rotation",
+          term: "Crop rotation",
+          description: "Planting different crops in the same field over time",
+        },
+        {
+          id: "yield",
+          term: "Yield",
+          description: "Amount harvested from a field",
+        },
+        {
+          id: "grain-corn",
+          term: "Grain corn",
+          description: "Corn harvested for kernels",
+        },
+        {
+          id: "silage",
+          term: "Silage",
+          description: "Whole plant crop harvested for livestock feed",
+        },
+        {
+          id: "soybeans",
+          term: "Soybeans",
+          description: "A crop that fits well into crop rotation systems",
+        },
+        {
+          id: "cash-crop",
+          term: "Cash crop",
+          description: "A crop grown primarily to be sold for income",
+        },
+        {
+          id: "grain-bin",
+          term: "Grain bin",
+          description: "A structure used to store grain before marketing",
+        },
+        {
+          id: "cover-crop",
+          term: "Cover crop",
+          description: "A crop planted to keep living roots in the soil and reduce erosion",
         },
       ],
     },
@@ -937,6 +1003,7 @@ const initialProgress: SavedProgress = {
   xp: 0,
   completedLocations: [],
   hotspotProgress: {},
+  wrapUpProgress: {},
   learnedTerms: [],
   finalComplete: false,
 };
@@ -948,10 +1015,10 @@ function asset(path: string) {
 }
 
 const welcomeNarration =
-  "Welcome to Farm Terminology Explorer. In this conservation officer training game, you will practice the language farmers use in real conversations. Visit crop, dairy, equipment, and conservation locations. Explore each scene, hear producer dialogue, answer quick checks, and collect terminology for later review.";
+  "Welcome to this DATCP module on Farm Terminology. As a Wisconsin conservation professional, you'll work with farmers from a variety of operations. While you don't need to be an expert in farming, understanding common farm terminology can help you ask better questions, build rapport, and have more productive conversations. In this activity, you'll visit several farms, meet producers, and explore equipment, animals, and infrastructure. As you interact with each farm, you'll encounter terms you're likely to hear in the field.";
 
 const mapDirectionsNarration =
-  "Farm map. Choose a location to explore by selecting a location graphic on the map. Complete the crop farm, dairy farm, equipment yard, and conservation area visits in any order. Each visit opens an exploration scene with hotspots. Select each hotspot, listen to the producer dialogue, answer the knowledge check, and return to the map when the visit is complete. Completed locations stay available for review.";
+  "Choose a location to begin exploring. Each location contains conversations, equipment, and terminology commonly encountered by conservation professionals. You may explore the locations in any order. As you complete each area, your progress will be tracked on the map.";
 
 function buildAudioScript() {
   const lines: string[] = [
@@ -998,6 +1065,15 @@ function buildAudioScript() {
       });
       lines.push(`Feedback: ${question.feedback}`);
     });
+    if (location.wrapUp) {
+      lines.push(`${location.title.toUpperCase()} - WRAP-UP`);
+      lines.push(location.wrapUp.narration);
+      lines.push(`Activity: ${location.wrapUp.matchPrompt}`);
+      location.wrapUp.matches.forEach((match) => {
+        lines.push(`${match.term}: ${match.description}`);
+      });
+      lines.push(`Transition: ${location.wrapUp.transition}`);
+    }
     lines.push(`Completion: ${location.summary} Badge earned: ${location.badge}.`);
     lines.push("");
   });
@@ -1227,6 +1303,7 @@ export default function Home() {
   const [dialogueIndex, setDialogueIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string[]>>({});
   const [submitted, setSubmitted] = useState<Record<string, boolean>>({});
+  const [matchAnswers, setMatchAnswers] = useState<Record<string, string>>({});
   const [showGlossary, setShowGlossary] = useState(false);
   const [showTranscript, setShowTranscript] = useState(false);
   const { soundEnabled, setSoundEnabled, playSound } = useAudioFeedback();
@@ -1295,6 +1372,13 @@ export default function Home() {
     }
     if (view.name === "challenge") {
       const location = getLocation(view.locationId);
+      const challengeDone = location.challenge.questions.every((question) => submitted[question.id]);
+      if (challengeDone && location.wrapUp) {
+        return {
+          text: `${location.wrapUp.narration} ${location.wrapUp.matchPrompt}`,
+          audioId: `wrapup-${location.id}`,
+        };
+      }
       return {
         text: `${location.challenge.title}. ${location.challenge.setup}. Questions: ${location.challenge.questions.map((question) => `${question.prompt} Choices: ${question.choices.map((choice) => choice.label).join(". ")}`).join(". ")}`,
         audioId: `challenge-${location.id}`,
@@ -1310,7 +1394,7 @@ export default function Home() {
       text: `Training activity complete. Understanding farm terminology helps conservation professionals build rapport, ask better questions, and communicate more effectively with producers. You explored ${progress.completedLocations.length} locations, learned ${progress.learnedTerms.length} terms, and earned ${progress.xp} XP.`,
       audioId: "complete",
     };
-  }, [activeHotspot, dialogueIndex, progress.completedLocations.length, progress.learnedTerms.length, progress.xp, view]);
+  }, [activeHotspot, dialogueIndex, progress.completedLocations.length, progress.learnedTerms.length, progress.xp, submitted, view]);
 
   useEffect(() => {
     if (narrationEnabled) speak(narrationCue.text, narrationCue.audioId);
@@ -1360,6 +1444,20 @@ export default function Home() {
     });
   }
 
+  function completeWrapUp(location: Location) {
+    const wrapUp = location.wrapUp;
+    if (!wrapUp) return;
+    playSound("complete");
+    setProgress((current) => {
+      if (current.wrapUpProgress[location.id]) return current;
+      return {
+        ...current,
+        xp: current.xp + wrapUp.xp,
+        wrapUpProgress: { ...current.wrapUpProgress, [location.id]: true },
+      };
+    });
+  }
+
   function chooseAnswer(question: Question, choiceId: string) {
     if (submitted[question.id]) return;
     playSound("select");
@@ -1396,6 +1494,7 @@ export default function Home() {
     setDialogueIndex(0);
     setAnswers({});
     setSubmitted({});
+    setMatchAnswers({});
   }
 
   function resetProgress() {
@@ -1520,8 +1619,15 @@ export default function Home() {
           location={getLocation(view.locationId)}
           answers={answers}
           submitted={submitted}
+          matchAnswers={matchAnswers}
+          wrapUpDone={Boolean(progress.wrapUpProgress[view.locationId])}
           onChooseAnswer={chooseAnswer}
           onSubmit={submitQuestion}
+          onMatch={(termId, descriptionId) => {
+            playSound("select");
+            setMatchAnswers((current) => ({ ...current, [termId]: descriptionId }));
+          }}
+          onCompleteWrapUp={completeWrapUp}
           onComplete={(location) => {
             completeLocation(location);
             resetTransient();
@@ -1942,18 +2048,31 @@ function ChallengeView({
   location,
   answers,
   submitted,
+  matchAnswers,
+  wrapUpDone,
   onChooseAnswer,
   onSubmit,
+  onMatch,
+  onCompleteWrapUp,
   onComplete,
 }: {
   location: Location;
   answers: Record<string, string[]>;
   submitted: Record<string, boolean>;
+  matchAnswers: Record<string, string>;
+  wrapUpDone: boolean;
   onChooseAnswer: (question: Question, choiceId: string) => void;
   onSubmit: (question: Question) => void;
+  onMatch: (termId: string, descriptionId: string) => void;
+  onCompleteWrapUp: (location: Location) => void;
   onComplete: (location: Location) => void;
 }) {
   const done = location.challenge.questions.every((question) => submitted[question.id]);
+  const wrapUpComplete =
+    !location.wrapUp ||
+    wrapUpDone ||
+    location.wrapUp.matches.every((match) => matchAnswers[match.id] === match.id);
+  const canComplete = done && wrapUpComplete;
   return (
     <section className="challenge-screen">
       <div className="challenge-hero" style={{ ["--challenge-color" as string]: location.color }}>
@@ -1973,9 +2092,121 @@ function ChallengeView({
           />
         ))}
       </div>
-      <button type="button" className="primary-button" disabled={!done} onClick={() => onComplete(location)}>
+      {done && location.wrapUp && (
+        <DragMatchActivity
+          wrapUp={location.wrapUp}
+          answers={matchAnswers}
+          complete={wrapUpComplete}
+          saved={wrapUpDone}
+          onMatch={onMatch}
+          onComplete={() => onCompleteWrapUp(location)}
+        />
+      )}
+      <button type="button" className="primary-button" disabled={!canComplete} onClick={() => onComplete(location)}>
         Complete Visit and Return to Map
       </button>
+    </section>
+  );
+}
+
+function DragMatchActivity({
+  wrapUp,
+  answers,
+  complete,
+  saved,
+  onMatch,
+  onComplete,
+}: {
+  wrapUp: NonNullable<Location["wrapUp"]>;
+  answers: Record<string, string>;
+  complete: boolean;
+  saved: boolean;
+  onMatch: (termId: string, descriptionId: string) => void;
+  onComplete: () => void;
+}) {
+  const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
+  const availableMatches = wrapUp.matches.filter((match) => !answers[match.id]);
+
+  function placeTerm(descriptionId: string) {
+    if (!selectedTerm) return;
+    onMatch(selectedTerm, descriptionId);
+    setSelectedTerm(null);
+  }
+
+  return (
+    <section className="drag-match-panel">
+      <div className="drag-match-heading">
+        <div>
+          <p className="eyebrow">Review</p>
+          <h3>{wrapUp.title}</h3>
+          <p>{wrapUp.narration}</p>
+        </div>
+        <div className="badge-card">
+          <span>Badge</span>
+          <strong>Crop Farm Explorer</strong>
+        </div>
+      </div>
+
+      <h4>{wrapUp.matchPrompt}</h4>
+      <div className="drag-match-grid">
+        <div className="term-bank" aria-label="Terms to match">
+          <h5>Terms</h5>
+          {availableMatches.length === 0 ? (
+            <p className="hint">All terms placed.</p>
+          ) : (
+            availableMatches.map((match) => (
+              <button
+                key={match.id}
+                type="button"
+                className={`term-chip ${selectedTerm === match.id ? "selected" : ""}`}
+                draggable
+                onClick={() => setSelectedTerm((current) => (current === match.id ? null : match.id))}
+                onDragStart={(event) => event.dataTransfer.setData("text/plain", match.id)}
+              >
+                {match.term}
+              </button>
+            ))
+          )}
+        </div>
+
+        <div className="match-targets">
+          {wrapUp.matches.map((match) => {
+            const placedTermId = Object.entries(answers).find(([, descriptionId]) => descriptionId === match.id)?.[0];
+            const placedTerm = wrapUp.matches.find((candidate) => candidate.id === placedTermId);
+            const correct = placedTerm?.id === match.id;
+            return (
+              <button
+                key={match.id}
+                type="button"
+                className={`match-target ${placedTerm ? "filled" : ""} ${correct ? "correct" : ""}`}
+                onClick={() => {
+                  if (selectedTerm) {
+                    placeTerm(match.id);
+                    return;
+                  }
+                  if (placedTerm) onMatch(placedTerm.id, "");
+                }}
+                onDragOver={(event) => event.preventDefault()}
+                onDrop={(event) => {
+                  event.preventDefault();
+                  const termId = event.dataTransfer.getData("text/plain");
+                  if (termId) onMatch(termId, match.id);
+                }}
+              >
+                <span>{match.description}</span>
+                <strong>{placedTerm?.term ?? "Drop term here"}</strong>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {complete && !saved && (
+        <button type="button" className="primary-button" onClick={onComplete}>
+          Save Wrap-Up Progress
+        </button>
+      )}
+      {saved && <p className="feedback correct">Wrap-up complete. {wrapUp.transition}</p>}
     </section>
   );
 }

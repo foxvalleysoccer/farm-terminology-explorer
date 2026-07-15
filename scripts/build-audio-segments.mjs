@@ -81,6 +81,10 @@ for (const location of locations) {
     pushSegment(segments, `feedback-${question.id}-correct`, `Correct. ${question.feedback}`);
     pushSegment(segments, `feedback-${question.id}-review`, `Review this one. ${question.feedback}`);
   }
+
+  if (location.wrapUp) {
+    pushSegment(segments, `wrapup-${location.id}`, `${location.wrapUp.narration} ${location.wrapUp.matchPrompt}`);
+  }
 }
 
 pushSegment(

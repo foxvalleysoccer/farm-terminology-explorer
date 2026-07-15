@@ -140,6 +140,10 @@
     "text": "Review this one. Yield is the harvested amount from a field or crop."
   },
   {
+    "id": "wrapup-crop",
+    "text": "You've completed your visit to a Wisconsin crop farm. Along the way, you learned how crop producers talk about planting, harvesting, crop rotation, grain storage, and soil health. These are all terms you're likely to hear during future conversations with producers. Next, you'll visit a dairy operation and discover how the terminology changes from one type of farm to another. Match the term to its description."
+  },
+  {
     "id": "location-dairy",
     "text": "Dairy Farm. Explore the scene. Visit a dairy operation and learn terminology related to herd management, animal life stages, housing, and milk handling.. Available hotspots: Farmer, Dairy Cows, Calves, Free Stall Barn, Milkhouse, Bulk Tank."
   },
