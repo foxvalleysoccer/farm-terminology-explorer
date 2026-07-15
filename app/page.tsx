@@ -1078,7 +1078,7 @@ function buildAudioScript() {
     "",
     "FARM MAP DIRECTIONS",
     mapDirectionsNarration,
-    "Progress panel note: The storyboard mentions a Livestock Farm, but the provided Word document does not include livestock screens. It is shown as content needed.",
+    "Progress panel note: Livestock Farm art is included as a placeholder. Approved livestock screens, dialogue, and audio are still needed before this visit can become active.",
     "",
   ];
 
@@ -1914,8 +1914,8 @@ function FarmMap({
               </button>
             );
           })}
-          <div className="map-pin locked livestock" aria-label="Livestock farm content not yet provided">
-            <div className="map-placeholder-art" aria-hidden="true" />
+          <div className="map-pin locked livestock" aria-label="Livestock farm art shown; content not yet provided">
+            <img src={asset("/location-art/livestock-farm.png")} alt="" />
             <span>Content needed</span>
             <strong>Livestock Farm</strong>
           </div>
@@ -1933,8 +1933,8 @@ function FarmMap({
           </div>
           <p>{progress.completedLocations.length} of {activeLocationIds.length} active visits complete.</p>
           <p className="note">
-            The storyboard mentions a Livestock Farm, but the provided Word document does
-            not include livestock screens. It is shown here as content needed.
+            Livestock Farm art is included as a placeholder. Approved livestock screens,
+            dialogue, and audio are still needed before this visit can become active.
           </p>
           <button
             type="button"
