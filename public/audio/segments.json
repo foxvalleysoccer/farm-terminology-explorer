@@ -1,0 +1,550 @@
+[
+  {
+    "id": "welcome",
+    "text": "Welcome to Farm Terminology Explorer. In this conservation officer training game, you will practice the language farmers use in real conversations. Visit crop, dairy, equipment, and conservation locations. Explore each scene, hear producer dialogue, answer quick checks, and collect terminology for later review."
+  },
+  {
+    "id": "map",
+    "text": "Farm map. Choose a location to explore by selecting a location graphic on the map. Complete the crop farm, dairy farm, equipment yard, and conservation area visits in any order. Each visit opens an exploration scene with hotspots. Select each hotspot, listen to the producer dialogue, answer the knowledge check, and return to the map when the visit is complete. Completed locations stay available for review. 0 of 4 active visits are complete."
+  },
+  {
+    "id": "location-crop",
+    "text": "Crop Farm. Explore the scene. Explore a Wisconsin crop farm. Select each hotspot to hear the producer use terms related to planting, harvest, storage, and soil health.. Available hotspots: Farmer, Corn Field, Soybean Field, Grain Bin, Cover Crop Strip."
+  },
+  {
+    "id": "hotspot-crop-farmer-0",
+    "text": "Farmer: Welcome. We raise corn and soybeans on about 1,200 acres. Most years we rotate fields between the two crops, and we also plant cover crops after harvest."
+  },
+  {
+    "id": "hotspot-crop-farmer-1",
+    "text": "Conservation Officer: Why do you rotate crops?"
+  },
+  {
+    "id": "hotspot-crop-farmer-2-check",
+    "text": "Farmer: It helps with soil health, pest management, and yields. It also spreads out some of our risk from year to year. New terms added: Crop rotation, Cover crops, Yield. Knowledge check. Which of the following best describes crop rotation? Choices: Planting different crops in the same field over time. Rotating tractors between fields. Changing fertilizer suppliers. Harvesting multiple crops at once."
+  },
+  {
+    "id": "feedback-crop-rotation-correct",
+    "text": "Correct. Crop rotation means changing what is planted in a field over time."
+  },
+  {
+    "id": "feedback-crop-rotation-review",
+    "text": "Review this one. Crop rotation means changing what is planted in a field over time."
+  },
+  {
+    "id": "hotspot-crop-corn-0",
+    "text": "Farmer: This field is grain corn. We leave it in the field until later in the season so the kernels can dry down before harvest."
+  },
+  {
+    "id": "hotspot-crop-corn-1",
+    "text": "Conservation Officer: Is all corn harvested the same way?"
+  },
+  {
+    "id": "hotspot-crop-corn-2-check",
+    "text": "Farmer: No. Some corn is harvested for grain, and some is chopped earlier for silage to feed livestock. New terms added: Grain corn, Silage. Knowledge check. What is the primary difference between grain corn and silage? Choices: Grain corn is harvested for kernels; silage is harvested as a whole plant for livestock feed. Grain corn is only grown in Wisconsin. Silage is harvested after grain corn. There is no difference."
+  },
+  {
+    "id": "feedback-grain-silage-correct",
+    "text": "Correct. Grain corn focuses on kernels. Silage uses more of the plant as feed."
+  },
+  {
+    "id": "feedback-grain-silage-review",
+    "text": "Review this one. Grain corn focuses on kernels. Silage uses more of the plant as feed."
+  },
+  {
+    "id": "hotspot-crop-soybeans-0",
+    "text": "Farmer: These soybeans are looking pretty good this year. We planted them shortly after the corn fields were finished."
+  },
+  {
+    "id": "hotspot-crop-soybeans-1",
+    "text": "Conservation Officer: What role do soybeans play in the operation?"
+  },
+  {
+    "id": "hotspot-crop-soybeans-2-check",
+    "text": "Farmer: They are an important cash crop for us and fit well into our crop rotation system. New terms added: Soybeans, Cash crop, Crop rotation. Knowledge check. A cash crop is: Choices: A crop grown primarily to be sold for income. A crop used only for livestock feed. A crop grown in small gardens. A crop harvested by hand."
+  },
+  {
+    "id": "feedback-cash-crop-correct",
+    "text": "Correct. A cash crop is grown mainly to be sold."
+  },
+  {
+    "id": "feedback-cash-crop-review",
+    "text": "Review this one. A cash crop is grown mainly to be sold."
+  },
+  {
+    "id": "hotspot-crop-grain-bin-0",
+    "text": "Farmer: After harvest, we store grain in these bins until we are ready to market it."
+  },
+  {
+    "id": "hotspot-crop-grain-bin-1",
+    "text": "Conservation Officer: So the grain is not always sold immediately?"
+  },
+  {
+    "id": "hotspot-crop-grain-bin-2-check",
+    "text": "Farmer: Not necessarily. Sometimes we store it and wait for better market conditions. New terms added: Grain bin, Grain storage, Marketing. Knowledge check. Why might a farmer use grain storage? Choices: To hold grain before selling it. To store hay. To store equipment. To separate seed varieties."
+  },
+  {
+    "id": "feedback-grain-storage-correct",
+    "text": "Correct. Storage lets farmers hold grain until they are ready to sell."
+  },
+  {
+    "id": "feedback-grain-storage-review",
+    "text": "Review this one. Storage lets farmers hold grain until they are ready to sell."
+  },
+  {
+    "id": "hotspot-crop-cover-crop-0",
+    "text": "Farmer: After we harvested this field, we planted a cover crop to keep living roots in the soil."
+  },
+  {
+    "id": "hotspot-crop-cover-crop-1",
+    "text": "Conservation Officer: What benefits do cover crops provide?"
+  },
+  {
+    "id": "hotspot-crop-cover-crop-2-check",
+    "text": "Farmer: They help reduce erosion, improve soil health, and can improve water infiltration. New terms added: Cover crop, Erosion, Soil health. Knowledge check. Which of the following is a common reason farmers use cover crops? Choices: Reduce erosion. Increase pesticide use. Eliminate all fertilizer needs. Delay planting indefinitely."
+  },
+  {
+    "id": "feedback-cover-benefit-correct",
+    "text": "Correct. Cover crops are often used to reduce erosion and support soil health."
+  },
+  {
+    "id": "feedback-cover-benefit-review",
+    "text": "Review this one. Cover crops are often used to reduce erosion and support soil health."
+  },
+  {
+    "id": "challenge-crop",
+    "text": "Crop Farm Conversation Challenge. Farmer: This year we are rotating some of our corn acres into soybeans. We also planted cover crops after harvest to help protect the soil.. Questions: Select the terms you recognize from the conversation. Choices: Crop Rotation. Cover Crop. Milking Parlor. Heifer. Bulk Tank. The farmer says the stand looked thin. What does stand mean? Choices: Number and distribution of plants growing in the field. Grain storage structure. Harvest equipment. Livestock feed. The farmer expects decent yields. What is yield? Choices: Amount harvested from a field. Type of crop rotation. Fertilizer application. Cover crop species"
+  },
+  {
+    "id": "feedback-crop-recognize-correct",
+    "text": "Correct. Crop rotation and cover crop are the crop terms used in this conversation."
+  },
+  {
+    "id": "feedback-crop-recognize-review",
+    "text": "Review this one. Crop rotation and cover crop are the crop terms used in this conversation."
+  },
+  {
+    "id": "feedback-rows-stand-correct",
+    "text": "Correct. Stand refers to the plants established in the field."
+  },
+  {
+    "id": "feedback-rows-stand-review",
+    "text": "Review this one. Stand refers to the plants established in the field."
+  },
+  {
+    "id": "feedback-rows-yield-correct",
+    "text": "Correct. Yield is the harvested amount from a field or crop."
+  },
+  {
+    "id": "feedback-rows-yield-review",
+    "text": "Review this one. Yield is the harvested amount from a field or crop."
+  },
+  {
+    "id": "location-dairy",
+    "text": "Dairy Farm. Explore the scene. Visit a dairy operation and learn terminology related to herd management, animal life stages, housing, and milk handling.. Available hotspots: Farmer, Dairy Cows, Calves, Free Stall Barn, Milkhouse, Bulk Tank."
+  },
+  {
+    "id": "hotspot-dairy-farmer-0",
+    "text": "Farmer: We milk about 450 cows twice a day. Most of our replacement heifers are raised here on the farm."
+  },
+  {
+    "id": "hotspot-dairy-farmer-1",
+    "text": "Conservation Officer: What is a replacement heifer?"
+  },
+  {
+    "id": "hotspot-dairy-farmer-2-check",
+    "text": "Farmer: She is a young female that has not entered the milking herd yet. Eventually she will replace older cows that leave the herd. New terms added: Milking herd, Replacement heifer, Culling. Knowledge check. Why are replacement heifers important? Choices: They eventually enter the milking herd. They pull farm equipment. They are sold immediately. They produce the most milk."
+  },
+  {
+    "id": "feedback-replacement-heifer-correct",
+    "text": "Correct. Replacement heifers can become future members of the milking herd."
+  },
+  {
+    "id": "feedback-replacement-heifer-review",
+    "text": "Review this one. Replacement heifers can become future members of the milking herd."
+  },
+  {
+    "id": "hotspot-dairy-cows-0",
+    "text": "Farmer: Most of these cows are currently in lactation, which means they are producing milk."
+  },
+  {
+    "id": "hotspot-dairy-cows-1",
+    "text": "Conservation Officer: Are all cows producing milk year-round?"
+  },
+  {
+    "id": "hotspot-dairy-cows-2-check",
+    "text": "Farmer: No. We also have dry cows that are not currently being milked. New terms added: Lactation, Dry cow. Knowledge check. A dry cow is: Choices: A cow temporarily not producing milk. A sick cow. A beef cow. A young calf."
+  },
+  {
+    "id": "feedback-dry-cow-correct",
+    "text": "Correct. A dry cow is temporarily not in milk production."
+  },
+  {
+    "id": "feedback-dry-cow-review",
+    "text": "Review this one. A dry cow is temporarily not in milk production."
+  },
+  {
+    "id": "hotspot-dairy-calves-0",
+    "text": "Farmer: These calves are the future of the herd. We watch their health and growth closely."
+  },
+  {
+    "id": "hotspot-dairy-calves-1",
+    "text": "Conservation Officer: When does a calf become a heifer?"
+  },
+  {
+    "id": "hotspot-dairy-calves-2-check",
+    "text": "Farmer: Once she is older but has not had her first calf yet, we call her a heifer. New terms added: Calf, Heifer. Knowledge check. Which animal has not yet had a calf? Choices: Heifer. Cow. Bull. Steer."
+  },
+  {
+    "id": "feedback-heifer-correct",
+    "text": "Correct. A heifer is a young female that has not yet had a calf."
+  },
+  {
+    "id": "feedback-heifer-review",
+    "text": "Review this one. A heifer is a young female that has not yet had a calf."
+  },
+  {
+    "id": "hotspot-dairy-barn-0",
+    "text": "Farmer: This is a free stall barn. The cows can move around freely, eat, drink, and choose where they rest."
+  },
+  {
+    "id": "hotspot-dairy-barn-1",
+    "text": "Conservation Officer: So they are not assigned a specific stall?"
+  },
+  {
+    "id": "hotspot-dairy-barn-2-check",
+    "text": "Farmer: Exactly. That is different from a tie stall barn where each cow stays in a designated space. New terms added: Free stall barn, Tie stall barn. Knowledge check. What is a key feature of a free stall barn? Choices: Cows can move freely throughout the barn. Cows remain tied in place. It stores feed. It houses calves only."
+  },
+  {
+    "id": "feedback-free-stall-correct",
+    "text": "Correct. Free stall barns let cows move freely to eat, drink, and rest."
+  },
+  {
+    "id": "feedback-free-stall-review",
+    "text": "Review this one. Free stall barns let cows move freely to eat, drink, and rest."
+  },
+  {
+    "id": "hotspot-dairy-milkhouse-0",
+    "text": "Farmer: The milkhouse contains equipment used to cool and store milk after it leaves the parlor."
+  },
+  {
+    "id": "hotspot-dairy-milkhouse-1",
+    "text": "Conservation Officer: So this is part of the milk handling process?"
+  },
+  {
+    "id": "hotspot-dairy-milkhouse-2",
+    "text": "Farmer: Exactly."
+  },
+  {
+    "id": "hotspot-dairy-bulk-tank-0",
+    "text": "Farmer: Milk is stored in the bulk tank until it is picked up by the processor."
+  },
+  {
+    "id": "hotspot-dairy-bulk-tank-1",
+    "text": "Conservation Officer: How often is it collected?"
+  },
+  {
+    "id": "hotspot-dairy-bulk-tank-2-check",
+    "text": "Farmer: Usually every day or two depending on the operation. New terms added: Bulk tank. Knowledge check. What is the purpose of a bulk tank? Choices: Store cooled milk before pickup. Store feed. Store manure. Store grain."
+  },
+  {
+    "id": "feedback-bulk-tank-correct",
+    "text": "Correct. A bulk tank stores cooled milk before pickup."
+  },
+  {
+    "id": "feedback-bulk-tank-review",
+    "text": "Review this one. A bulk tank stores cooled milk before pickup."
+  },
+  {
+    "id": "challenge-dairy",
+    "text": "Dairy Conversation Challenge. Farmer: One of our replacement heifers should join the milking herd later this year. We have also got a group of dry cows that will calve soon.. Questions: Select all terms you recognize. Choices: Replacement Heifer. Milking Herd. Dry Cow. Grain Bin. Chisel Plow. The farmer says they culled a few older cows. What does culled mean? Choices: Removed from the herd. Added to the herd. Moved to another pasture. Vaccinated. Which facility stores cooled milk before processor pickup? Choices: Bulk Tank. Free Stall Barn. Grain Bin. Grassed Waterway"
+  },
+  {
+    "id": "feedback-dairy-recognize-correct",
+    "text": "Correct. Those terms are all connected to dairy herd management."
+  },
+  {
+    "id": "feedback-dairy-recognize-review",
+    "text": "Review this one. Those terms are all connected to dairy herd management."
+  },
+  {
+    "id": "feedback-culled-correct",
+    "text": "Correct. Culled animals are removed from the herd."
+  },
+  {
+    "id": "feedback-culled-review",
+    "text": "Review this one. Culled animals are removed from the herd."
+  },
+  {
+    "id": "feedback-infra-correct",
+    "text": "Correct. The bulk tank stores cooled milk before pickup."
+  },
+  {
+    "id": "feedback-infra-review",
+    "text": "Review this one. The bulk tank stores cooled milk before pickup."
+  },
+  {
+    "id": "location-equipment",
+    "text": "Equipment Yard. Explore the scene. Explore equipment a conservation professional may hear farmers mention during planting, harvest, tillage, and cover crop establishment.. Available hotspots: Farmer, Planter, Drill, Combine, Chopper, Chisel Plow, Disk."
+  },
+  {
+    "id": "hotspot-equipment-farmer-0",
+    "text": "Farmer: This time of year, we are getting equipment ready for planting. Later in the season we will switch over to harvesting equipment."
+  },
+  {
+    "id": "hotspot-equipment-farmer-1",
+    "text": "Conservation Officer: Do most farms use different machines throughout the year?"
+  },
+  {
+    "id": "hotspot-equipment-farmer-2-check",
+    "text": "Farmer: Absolutely. Different jobs require different equipment depending on the crop and season. New terms added: Planting, Harvest, Field operations. Knowledge check. Why might a farm use several different machines throughout the year? Choices: Different machines perform different tasks. Equipment is only used once. Farmers rotate machines for tax purposes. All machines perform the same function."
+  },
+  {
+    "id": "feedback-machines-correct",
+    "text": "Correct. Different field jobs require different machines."
+  },
+  {
+    "id": "feedback-machines-review",
+    "text": "Review this one. Different field jobs require different machines."
+  },
+  {
+    "id": "hotspot-equipment-planter-0",
+    "text": "Farmer: This planter places individual seeds at a consistent depth and spacing."
+  },
+  {
+    "id": "hotspot-equipment-planter-1",
+    "text": "Conservation Officer: So it is used when establishing the crop?"
+  },
+  {
+    "id": "hotspot-equipment-planter-2-check",
+    "text": "Farmer: Exactly. Good seed placement can make a big difference later in the season. New terms added: Planter, Seed placement. Knowledge check. What is the primary purpose of a planter? Choices: Place seeds in the soil. Harvest grain. Apply manure. Store feed."
+  },
+  {
+    "id": "feedback-planter-correct",
+    "text": "Correct. A planter places seeds in the soil at a set spacing and depth."
+  },
+  {
+    "id": "feedback-planter-review",
+    "text": "Review this one. A planter places seeds in the soil at a set spacing and depth."
+  },
+  {
+    "id": "hotspot-equipment-drill-0",
+    "text": "Farmer: We use the drill for smaller seeds and some cover crops."
+  },
+  {
+    "id": "hotspot-equipment-drill-1",
+    "text": "Conservation Officer: How is it different from the planter?"
+  },
+  {
+    "id": "hotspot-equipment-drill-2-check",
+    "text": "Farmer: A drill places many seeds in closely spaced rows rather than individual spacing. New terms added: Drill, Cover crop establishment. Knowledge check. A drill is commonly used to: Choices: Plant small seeded crops. Harvest corn early. Chop forage. Store grain."
+  },
+  {
+    "id": "feedback-drill-correct",
+    "text": "Correct. Drills are commonly used for small seeds and cover crops."
+  },
+  {
+    "id": "feedback-drill-review",
+    "text": "Review this one. Drills are commonly used for small seeds and cover crops."
+  },
+  {
+    "id": "hotspot-equipment-combine-0",
+    "text": "Farmer: This combine harvests grain crops like corn, soybeans, and small grains."
+  },
+  {
+    "id": "hotspot-equipment-combine-1",
+    "text": "Conservation Officer: So this is one of the last machines used during the season?"
+  },
+  {
+    "id": "hotspot-equipment-combine-2-check",
+    "text": "Farmer: That is right. Harvest is often what people picture when they think of farming. New terms added: Combine, Harvest. Knowledge check. What is a combine used for? Choices: Harvesting grain crops. Planting seed. Tilling soil. Storing grain."
+  },
+  {
+    "id": "feedback-combine-correct",
+    "text": "Correct. A combine harvests grain crops."
+  },
+  {
+    "id": "feedback-combine-review",
+    "text": "Review this one. A combine harvests grain crops."
+  },
+  {
+    "id": "hotspot-equipment-chopper-0",
+    "text": "Farmer: When we harvest forage like corn silage, we use the chopper."
+  },
+  {
+    "id": "hotspot-equipment-chopper-1",
+    "text": "Conservation Officer: So this ties back to the silage we talked about earlier?"
+  },
+  {
+    "id": "hotspot-equipment-chopper-2-check",
+    "text": "Farmer: Exactly. The chopper cuts and processes the crop before it goes into storage. New terms added: Chopper, Silage, Forage. Knowledge check. A chopper is commonly associated with: Choices: Forage harvest. Grain storage. Milk production. Grazing."
+  },
+  {
+    "id": "feedback-chopper-correct",
+    "text": "Correct. Choppers are used in forage harvest, including silage."
+  },
+  {
+    "id": "feedback-chopper-review",
+    "text": "Review this one. Choppers are used in forage harvest, including silage."
+  },
+  {
+    "id": "hotspot-equipment-chisel-0",
+    "text": "Farmer: This is a chisel plow. It breaks up compacted areas at deeper depths while leaving some crop residue on the surface."
+  },
+  {
+    "id": "hotspot-equipment-chisel-1",
+    "text": "Conservation Officer: So it disturbs the soil but does not completely turn it over?"
+  },
+  {
+    "id": "hotspot-equipment-chisel-2-check",
+    "text": "Farmer: Exactly. New terms added: Chisel plow, Conservation tillage. Knowledge check. Why might a farmer use a chisel plow? Choices: To break up hardpans. To harvest crops. To apply manure. To plant seed."
+  },
+  {
+    "id": "feedback-chisel-correct",
+    "text": "Correct. A chisel plow can break up compacted soil layers."
+  },
+  {
+    "id": "feedback-chisel-review",
+    "text": "Review this one. A chisel plow can break up compacted soil layers."
+  },
+  {
+    "id": "hotspot-equipment-disk-0",
+    "text": "Farmer: This disk helps break up residue and prepare fields for planting."
+  },
+  {
+    "id": "hotspot-equipment-disk-1",
+    "text": "Conservation Officer: Is it considered tillage equipment?"
+  },
+  {
+    "id": "hotspot-equipment-disk-2-check",
+    "text": "Farmer: Yes. It is one of several tools farmers may use depending on field conditions. New terms added: Disk, Tillage. Knowledge check. A disk is primarily used for: Choices: Soil preparation and residue management. Harvesting grain. Transporting crops. Feeding livestock."
+  },
+  {
+    "id": "feedback-disk-correct",
+    "text": "Correct. A disk is tillage equipment used for soil and residue preparation."
+  },
+  {
+    "id": "feedback-disk-review",
+    "text": "Review this one. A disk is tillage equipment used for soil and residue preparation."
+  },
+  {
+    "id": "challenge-equipment",
+    "text": "What Equipment Is the Farmer Talking About?. Listen for clues in realistic farmer comments and choose the machine being described.. Questions: We will start using this machine once the soybeans are ready to come off the field. Choices: Combine. Planter. Chopper. Drill. We will use this machine to establish our cover crops after harvest. Choices: Drill. Combine. Chopper. Bulk Tank. We will be harvesting corn silage next week. Choices: Chopper. Planter. Combine. Disk"
+  },
+  {
+    "id": "feedback-equip-combine-correct",
+    "text": "Correct. Soybeans coming off the field points to a combine."
+  },
+  {
+    "id": "feedback-equip-combine-review",
+    "text": "Review this one. Soybeans coming off the field points to a combine."
+  },
+  {
+    "id": "feedback-equip-drill-correct",
+    "text": "Correct. A drill is often used to establish small-seeded cover crops."
+  },
+  {
+    "id": "feedback-equip-drill-review",
+    "text": "Review this one. A drill is often used to establish small-seeded cover crops."
+  },
+  {
+    "id": "feedback-equip-chopper-correct",
+    "text": "Correct. Corn silage is commonly harvested with a chopper."
+  },
+  {
+    "id": "feedback-equip-chopper-review",
+    "text": "Review this one. Corn silage is commonly harvested with a chopper."
+  },
+  {
+    "id": "location-conservation",
+    "text": "Conservation Area. Explore the scene. Move to the edge of a field where conservation practices are visible. Explore terms farmers may use when talking about soil and water protection.. Available hotspots: Farmer, Grassed Waterway, Buffer Strip, Tile Drainage Outlet, Cover Crop Field."
+  },
+  {
+    "id": "hotspot-conservation-farmer-0",
+    "text": "Farmer: We have added several conservation practices over the years to protect soil and water while keeping the farm productive."
+  },
+  {
+    "id": "hotspot-conservation-waterway-0-check",
+    "text": "Farmer: This waterway helps safely move runoff through the field without causing erosion. New terms added: Grassed waterway, Runoff, Erosion. Knowledge check. What is the primary purpose of a grassed waterway? Choices: Reduce soil erosion from runoff. Store manure. Grow forage. Improve harvest efficiency."
+  },
+  {
+    "id": "feedback-waterway-correct",
+    "text": "Correct. A grassed waterway carries runoff while reducing erosion."
+  },
+  {
+    "id": "feedback-waterway-review",
+    "text": "Review this one. A grassed waterway carries runoff while reducing erosion."
+  },
+  {
+    "id": "hotspot-conservation-buffer-0-check",
+    "text": "Farmer: This strip of vegetation helps filter runoff before it reaches nearby water. New terms added: Buffer strip, Runoff. Knowledge check. Buffer strips help: Choices: Protect nearby waterways. Increase livestock production. Store grain. Dry crops."
+  },
+  {
+    "id": "feedback-buffer-correct",
+    "text": "Correct. Buffer strips filter runoff and help protect water."
+  },
+  {
+    "id": "feedback-buffer-review",
+    "text": "Review this one. Buffer strips filter runoff and help protect water."
+  },
+  {
+    "id": "hotspot-conservation-tile-0-check",
+    "text": "Farmer: These tiles help move excess water away from crop roots. New terms added: Tile drainage. Knowledge check. Tile drainage is designed to: Choices: Remove excess water from fields. Irrigate crops. Store nutrients. Transport grain."
+  },
+  {
+    "id": "feedback-tile-correct",
+    "text": "Correct. Tile drainage helps move excess water away from fields."
+  },
+  {
+    "id": "feedback-tile-review",
+    "text": "Review this one. Tile drainage helps move excess water away from fields."
+  },
+  {
+    "id": "hotspot-conservation-cover-field-0",
+    "text": "Farmer: You have already seen cover crops on another farm. They are one of several tools we use to protect soil."
+  },
+  {
+    "id": "challenge-conservation",
+    "text": "Conservation Practice Challenge. Review the terms farmers may use when talking about soil and water protection.. Questions: Which terms are conservation practices or features from this area? Choices: Grassed Waterway. Buffer Strip. Tile Drainage. Bulk Tank. Replacement Heifer"
+  },
+  {
+    "id": "feedback-conservation-recognize-correct",
+    "text": "Correct. Grassed waterways, buffer strips, and tile drainage are conservation-related features in this module."
+  },
+  {
+    "id": "feedback-conservation-recognize-review",
+    "text": "Review this one. Grassed waterways, buffer strips, and tile drainage are conservation-related features in this module."
+  },
+  {
+    "id": "final",
+    "text": "Putting it all together. Conservation Professional Conversation Challenge. Recognize terms from multiple farm visits and choose a follow-up question that keeps the conversation productive. Farmer: We finished chopping silage last week. We planted cover crops right afterward and may chop them in spring for replacement heifer feed. We are adding soybeans into our rotation and checking the nutrient management plan. Which terms did you hear? Choices: Silage. Cover Crop. Replacement Heifer. Yield. Nutrient Management Plan. Crop Rotation. Farmer: This field was soybeans last year, so it will go into corn as part of the rotation. After harvest, we drill in a cover crop. This field gets wet and has drain tile to manage excess water. Which terms did you hear? Choices: Crop Rotation. Cover Crop. Tile Drainage. Nutrient Management Plan. Bulk Tank. Dry Cow. Which follow-up question would be most appropriate? Choices: Can you tell me more about your cover crop strategy?. How many gallons of milk does your bulk tank hold?. What breed are your dairy cows?. How much grain fits in your silo?"
+  },
+  {
+    "id": "feedback-final-terms-correct",
+    "text": "Correct. All of these are terms used in the integrated farm conversation."
+  },
+  {
+    "id": "feedback-final-terms-review",
+    "text": "Review this one. All of these are terms used in the integrated farm conversation."
+  },
+  {
+    "id": "feedback-boss-terms-correct",
+    "text": "Correct. The relevant terms are crop rotation, cover crop, tile drainage, and nutrient management plan."
+  },
+  {
+    "id": "feedback-boss-terms-review",
+    "text": "Review this one. The relevant terms are crop rotation, cover crop, tile drainage, and nutrient management plan."
+  },
+  {
+    "id": "feedback-boss-followup-correct",
+    "text": "Correct. Recognizing terminology helps you ask relevant questions that fit the conversation."
+  },
+  {
+    "id": "feedback-boss-followup-review",
+    "text": "Review this one. Recognizing terminology helps you ask relevant questions that fit the conversation."
+  },
+  {
+    "id": "complete",
+    "text": "Training activity complete. Understanding farm terminology helps conservation professionals build rapport, ask better questions, and communicate more effectively with producers."
+  }
+]

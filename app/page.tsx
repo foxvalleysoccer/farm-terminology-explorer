@@ -1030,6 +1030,11 @@ function downloadTextFile(filename: string, text: string) {
   URL.revokeObjectURL(url);
 }
 
+type NarrationCue = {
+  text: string;
+  audioId: string;
+};
+
 type SoundName = "click" | "select" | "correct" | "incorrect" | "complete" | "open";
 
 const narrationSettings = {
@@ -1107,12 +1112,49 @@ function useAudioFeedback() {
 function useNarrator() {
   const [narrationEnabled, setNarrationEnabled] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [audioManifest, setAudioManifest] = useState<Record<string, string>>({});
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const speak = useCallback((text: string) => {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+  useEffect(() => {
+    let active = true;
+    fetch(asset("/audio/manifest.json"), { cache: "no-store" })
+      .then((response) => (response.ok ? response.json() : {}))
+      .then((manifest) => {
+        if (active && manifest && typeof manifest === "object") {
+          setAudioManifest(manifest as Record<string, string>);
+        }
+      })
+      .catch(() => {
+        if (active) setAudioManifest({});
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const speak = useCallback((text: string, audioId?: string) => {
+    if (typeof window === "undefined") return;
     const cleanText = text.replace(/\s+/g, " ").trim();
     if (!cleanText) return;
-    window.speechSynthesis.cancel();
+    audioRef.current?.pause();
+    audioRef.current = null;
+    if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+
+    const audioPath = audioId ? audioManifest[audioId] : undefined;
+    if (audioPath) {
+      const audio = new Audio(asset(audioPath));
+      audioRef.current = audio;
+      audio.onplay = () => setIsSpeaking(true);
+      audio.onended = () => setIsSpeaking(false);
+      audio.onerror = () => {
+        setIsSpeaking(false);
+        audioRef.current = null;
+      };
+      audio.play().catch(() => setIsSpeaking(false));
+      return;
+    }
+
+    if (!("speechSynthesis" in window)) return;
     const utterance = new SpeechSynthesisUtterance(cleanText);
     const voices = window.speechSynthesis.getVoices();
     const preferred =
@@ -1128,20 +1170,22 @@ function useNarrator() {
     utterance.onend = () => setIsSpeaking(false);
     utterance.onerror = () => setIsSpeaking(false);
     window.speechSynthesis.speak(utterance);
-  }, []);
+  }, [audioManifest]);
 
   const stop = useCallback(() => {
+    audioRef.current?.pause();
+    audioRef.current = null;
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
       window.speechSynthesis.cancel();
     }
     setIsSpeaking(false);
   }, []);
 
-  const toggleNarration = useCallback((currentText: string) => {
+  const toggleNarration = useCallback((currentCue: NarrationCue) => {
     setNarrationEnabled((current) => {
       const next = !current;
       if (next) {
-        speak(currentText);
+        speak(currentCue.text, currentCue.audioId);
       } else {
         stop();
       }
@@ -1218,12 +1262,15 @@ export default function Home() {
     progress.completedLocations.includes(id),
   );
 
-  const narrationText = useMemo(() => {
+  const narrationCue = useMemo<NarrationCue>(() => {
     if (view.name === "welcome") {
-      return welcomeNarration;
+      return { text: welcomeNarration, audioId: "welcome" };
     }
     if (view.name === "map") {
-      return `${mapDirectionsNarration} ${progress.completedLocations.length} of ${activeLocationIds.length} active visits are complete.`;
+      return {
+        text: `${mapDirectionsNarration} ${progress.completedLocations.length} of ${activeLocationIds.length} active visits are complete.`,
+        audioId: "map",
+      };
     }
     if (view.name === "location") {
       const location = getLocation(view.locationId);
@@ -1231,30 +1278,48 @@ export default function Home() {
         const line = activeHotspot.dialogue[dialogueIndex];
         const question = activeHotspot.question;
         if (dialogueIndex === activeHotspot.dialogue.length - 1 && question) {
-          return `${line.speaker}: ${line.text} New terms added: ${activeHotspot.terms.join(", ")}. Knowledge check. ${question.prompt} Choices: ${question.choices.map((choice) => choice.label).join(". ")}.`;
+          return {
+            text: `${line.speaker}: ${line.text} New terms added: ${activeHotspot.terms.join(", ")}. Knowledge check. ${question.prompt} Choices: ${question.choices.map((choice) => choice.label).join(". ")}.`,
+            audioId: `hotspot-${location.id}-${activeHotspot.id}-${dialogueIndex}-check`,
+          };
         }
-        return `${line.speaker}: ${line.text}`;
+        return {
+          text: `${line.speaker}: ${line.text}`,
+          audioId: `hotspot-${location.id}-${activeHotspot.id}-${dialogueIndex}`,
+        };
       }
-      return `${location.title}. Explore the scene. ${location.intro}. Available hotspots: ${location.hotspots.map((hotspot) => hotspot.label).join(", ")}.`;
+      return {
+        text: `${location.title}. Explore the scene. ${location.intro}. Available hotspots: ${location.hotspots.map((hotspot) => hotspot.label).join(", ")}.`,
+        audioId: `location-${location.id}`,
+      };
     }
     if (view.name === "challenge") {
       const location = getLocation(view.locationId);
-      return `${location.challenge.title}. ${location.challenge.setup}. Questions: ${location.challenge.questions.map((question) => `${question.prompt} Choices: ${question.choices.map((choice) => choice.label).join(". ")}`).join(". ")}`;
+      return {
+        text: `${location.challenge.title}. ${location.challenge.setup}. Questions: ${location.challenge.questions.map((question) => `${question.prompt} Choices: ${question.choices.map((choice) => choice.label).join(". ")}`).join(". ")}`,
+        audioId: `challenge-${location.id}`,
+      };
     }
     if (view.name === "final") {
-      return `Putting it all together. Conservation Professional Conversation Challenge. Recognize terms from multiple farm visits and choose a follow-up question that keeps the conversation productive. ${finalQuestions.map((question) => `${question.prompt} Choices: ${question.choices.map((choice) => choice.label).join(". ")}`).join(". ")}`;
+      return {
+        text: `Putting it all together. Conservation Professional Conversation Challenge. Recognize terms from multiple farm visits and choose a follow-up question that keeps the conversation productive. ${finalQuestions.map((question) => `${question.prompt} Choices: ${question.choices.map((choice) => choice.label).join(". ")}`).join(". ")}`,
+        audioId: "final",
+      };
     }
-    return `Training activity complete. Understanding farm terminology helps conservation professionals build rapport, ask better questions, and communicate more effectively with producers. You explored ${progress.completedLocations.length} locations, learned ${progress.learnedTerms.length} terms, and earned ${progress.xp} XP.`;
+    return {
+      text: `Training activity complete. Understanding farm terminology helps conservation professionals build rapport, ask better questions, and communicate more effectively with producers. You explored ${progress.completedLocations.length} locations, learned ${progress.learnedTerms.length} terms, and earned ${progress.xp} XP.`,
+      audioId: "complete",
+    };
   }, [activeHotspot, dialogueIndex, progress.completedLocations.length, progress.learnedTerms.length, progress.xp, view]);
 
   useEffect(() => {
-    if (narrationEnabled) speak(narrationText);
-  }, [narrationEnabled, narrationText, speak]);
+    if (narrationEnabled) speak(narrationCue.text, narrationCue.audioId);
+  }, [narrationCue, narrationEnabled, speak]);
 
   useEffect(() => {
     if (view.name !== "welcome" || welcomeAutoPlayed.current) return;
     welcomeAutoPlayed.current = true;
-    window.setTimeout(() => speak(welcomeNarration), 350);
+    window.setTimeout(() => speak(welcomeNarration, "welcome"), 350);
   }, [speak, view.name]);
 
   const downloadAudioScript = useCallback(() => {
@@ -1315,7 +1380,10 @@ export default function Home() {
     const correct = isCorrect(question, selected);
     playSound(correct ? "correct" : "incorrect");
     if (narrationEnabled) {
-      speak(`${correct ? "Correct." : "Review this one."} ${question.feedback}`);
+      speak(
+        `${correct ? "Correct." : "Review this one."} ${question.feedback}`,
+        `feedback-${question.id}-${correct ? "correct" : "review"}`,
+      );
     }
     setSubmitted((current) => ({ ...current, [question.id]: true }));
     if (correct) {
@@ -1366,11 +1434,11 @@ export default function Home() {
         soundEnabled={soundEnabled}
         onToggleNarration={() => {
           playSound("click");
-          toggleNarration(narrationText);
+          toggleNarration(narrationCue);
         }}
         onReplayNarration={() => {
           playSound("click");
-          speak(narrationText);
+          speak(narrationCue.text, narrationCue.audioId);
         }}
         onToggleSound={() => setSoundEnabled((current) => !current)}
       />
@@ -1379,7 +1447,7 @@ export default function Home() {
         <Welcome
           onPlayWelcome={() => {
             playSound("click");
-            speak(welcomeNarration);
+            speak(welcomeNarration, "welcome");
           }}
           onDownloadScript={downloadAudioScript}
           onStart={() => {
