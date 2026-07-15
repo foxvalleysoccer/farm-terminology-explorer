@@ -246,8 +246,8 @@ const locations: Location[] = [
     title: "Crop Farm",
     shortTitle: "Crops",
     color: "#2f7d32",
-    image: "/source-media/image15.jpeg",
-    alt: "A clean crop farm photo showing a farmer, corn field, farm lane, and grain bins.",
+    image: "/location-art/crop-farm.png",
+    alt: "Illustrated crop farm with corn, soybeans, cover crop, and grain bins.",
     intro:
       "Explore a Wisconsin crop farm. Select each hotspot to hear the producer use terms related to planting, harvest, storage, and soil health.",
     summary:
@@ -309,8 +309,8 @@ const locations: Location[] = [
     title: "Dairy Farm",
     shortTitle: "Dairy",
     color: "#1469a8",
-    image: "/source-media/image3.png",
-    alt: "Dairy cattle in a barn scene from the storyboard assets.",
+    image: "/location-art/dairy-farm.png",
+    alt: "Illustrated dairy operation with cows, calves, barn, milkhouse, and bulk tank.",
     intro:
       "Visit a dairy operation and learn terminology related to herd management, animal life stages, housing, and milk handling.",
     summary:
@@ -320,7 +320,7 @@ const locations: Location[] = [
       {
         id: "farmer",
         label: "Farmer",
-        position: { x: 25, y: 58 },
+        position: { x: 24, y: 62 },
         dialogue: [
           {
             speaker: "Farmer",
@@ -353,7 +353,7 @@ const locations: Location[] = [
       {
         id: "cows",
         label: "Dairy Cows",
-        position: { x: 55, y: 48 },
+        position: { x: 45, y: 56 },
         dialogue: [
           {
             speaker: "Farmer",
@@ -380,7 +380,7 @@ const locations: Location[] = [
       {
         id: "calves",
         label: "Calves",
-        position: { x: 72, y: 62 },
+        position: { x: 80, y: 74 },
         dialogue: [
           { speaker: "Farmer", text: "These calves are the future of the herd. We watch their health and growth closely." },
           { speaker: "Conservation Officer", text: "When does a calf become a heifer?" },
@@ -404,7 +404,7 @@ const locations: Location[] = [
       {
         id: "barn",
         label: "Free Stall Barn",
-        position: { x: 45, y: 28 },
+        position: { x: 24, y: 28 },
         dialogue: [
           {
             speaker: "Farmer",
@@ -434,7 +434,7 @@ const locations: Location[] = [
       {
         id: "milkhouse",
         label: "Milkhouse",
-        position: { x: 83, y: 36 },
+        position: { x: 74, y: 35 },
         dialogue: [
           { speaker: "Farmer", text: "The milkhouse contains equipment used to cool and store milk after it leaves the parlor." },
           { speaker: "Conservation Officer", text: "So this is part of the milk handling process?" },
@@ -445,7 +445,7 @@ const locations: Location[] = [
       {
         id: "bulk-tank",
         label: "Bulk Tank",
-        position: { x: 82, y: 72 },
+        position: { x: 83, y: 48 },
         dialogue: [
           { speaker: "Farmer", text: "Milk is stored in the bulk tank until it is picked up by the processor." },
           { speaker: "Conservation Officer", text: "How often is it collected?" },
@@ -521,8 +521,8 @@ const locations: Location[] = [
     title: "Equipment Yard",
     shortTitle: "Equipment",
     color: "#c4631a",
-    image: "/source-media/image7.png",
-    alt: "A farm lane and barn used as the equipment yard scene.",
+    image: "/location-art/equipment-yard.png",
+    alt: "Illustrated equipment yard with planter, drill, combine, chopper, chisel plow, and disk.",
     intro:
       "Explore equipment a conservation professional may hear farmers mention during planting, harvest, tillage, and cover crop establishment.",
     summary:
@@ -532,7 +532,7 @@ const locations: Location[] = [
       {
         id: "farmer",
         label: "Farmer",
-        position: { x: 33, y: 62 },
+        position: { x: 50, y: 44 },
         dialogue: [
           {
             speaker: "Farmer",
@@ -562,7 +562,7 @@ const locations: Location[] = [
       {
         id: "planter",
         label: "Planter",
-        position: { x: 24, y: 76 },
+        position: { x: 16, y: 42 },
         dialogue: [
           { speaker: "Farmer", text: "This planter places individual seeds at a consistent depth and spacing." },
           { speaker: "Conservation Officer", text: "So it is used when establishing the crop?" },
@@ -586,7 +586,7 @@ const locations: Location[] = [
       {
         id: "drill",
         label: "Drill",
-        position: { x: 42, y: 76 },
+        position: { x: 39, y: 45 },
         dialogue: [
           { speaker: "Farmer", text: "We use the drill for smaller seeds and some cover crops." },
           { speaker: "Conservation Officer", text: "How is it different from the planter?" },
@@ -610,7 +610,7 @@ const locations: Location[] = [
       {
         id: "combine",
         label: "Combine",
-        position: { x: 57, y: 75 },
+        position: { x: 68, y: 42 },
         dialogue: [
           { speaker: "Farmer", text: "This combine harvests grain crops like corn, soybeans, and small grains." },
           { speaker: "Conservation Officer", text: "So this is one of the last machines used during the season?" },
@@ -634,7 +634,7 @@ const locations: Location[] = [
       {
         id: "chopper",
         label: "Chopper",
-        position: { x: 72, y: 72 },
+        position: { x: 88, y: 46 },
         dialogue: [
           { speaker: "Farmer", text: "When we harvest forage like corn silage, we use the chopper." },
           { speaker: "Conservation Officer", text: "So this ties back to the silage we talked about earlier?" },
@@ -658,7 +658,7 @@ const locations: Location[] = [
       {
         id: "chisel",
         label: "Chisel Plow",
-        position: { x: 48, y: 42 },
+        position: { x: 27, y: 72 },
         dialogue: [
           {
             speaker: "Farmer",
@@ -685,7 +685,7 @@ const locations: Location[] = [
       {
         id: "disk",
         label: "Disk",
-        position: { x: 84, y: 54 },
+        position: { x: 70, y: 72 },
         dialogue: [
           { speaker: "Farmer", text: "This disk helps break up residue and prepare fields for planting." },
           { speaker: "Conservation Officer", text: "Is it considered tillage equipment?" },
@@ -759,8 +759,8 @@ const locations: Location[] = [
     title: "Conservation Area",
     shortTitle: "Conservation",
     color: "#087b83",
-    image: "/source-media/image8.png",
-    alt: "An aerial view of fields and vegetated strips used for conservation practice exploration.",
+    image: "/location-art/conservation-area.png",
+    alt: "Illustrated conservation area with cover crop field, grassed waterway, buffer strip, stream, and tile outlet.",
     intro:
       "Move to the edge of a field where conservation practices are visible. Explore terms farmers may use when talking about soil and water protection.",
     summary:
@@ -770,7 +770,7 @@ const locations: Location[] = [
       {
         id: "farmer",
         label: "Farmer",
-        position: { x: 35, y: 62 },
+        position: { x: 55, y: 42 },
         dialogue: [
           {
             speaker: "Farmer",
@@ -782,7 +782,7 @@ const locations: Location[] = [
       {
         id: "waterway",
         label: "Grassed Waterway",
-        position: { x: 52, y: 41 },
+        position: { x: 52, y: 54 },
         dialogue: [
           { speaker: "Farmer", text: "This waterway helps safely move runoff through the field without causing erosion." },
         ],
@@ -804,7 +804,7 @@ const locations: Location[] = [
       {
         id: "buffer",
         label: "Buffer Strip",
-        position: { x: 64, y: 62 },
+        position: { x: 75, y: 58 },
         dialogue: [
           { speaker: "Farmer", text: "This strip of vegetation helps filter runoff before it reaches nearby water." },
         ],
@@ -826,7 +826,7 @@ const locations: Location[] = [
       {
         id: "tile",
         label: "Tile Drainage Outlet",
-        position: { x: 74, y: 48 },
+        position: { x: 17, y: 76 },
         dialogue: [
           { speaker: "Farmer", text: "These tiles help move excess water away from crop roots." },
         ],
@@ -848,7 +848,7 @@ const locations: Location[] = [
       {
         id: "cover-field",
         label: "Cover Crop Field",
-        position: { x: 46, y: 78 },
+        position: { x: 23, y: 45 },
         dialogue: [
           {
             speaker: "Farmer",
@@ -945,6 +945,89 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 function asset(path: string) {
   return `${basePath}${path}`;
+}
+
+const welcomeNarration =
+  "Welcome to Farm Terminology Explorer. In this conservation officer training game, you will practice the language farmers use in real conversations. Visit crop, dairy, equipment, and conservation locations. Explore each scene, hear producer dialogue, answer quick checks, and collect terminology for later review.";
+
+const mapDirectionsNarration =
+  "Farm map. Choose a location to explore by selecting a location graphic on the map. Complete the crop farm, dairy farm, equipment yard, and conservation area visits in any order. Each visit opens an exploration scene with hotspots. Select each hotspot, listen to the producer dialogue, answer the knowledge check, and return to the map when the visit is complete. Completed locations stay available for review.";
+
+function buildAudioScript() {
+  const lines: string[] = [
+    "Farm Terminology Explorer Audio Script",
+    "",
+    "WELCOME PAGE",
+    welcomeNarration,
+    "",
+    "FARM MAP DIRECTIONS",
+    mapDirectionsNarration,
+    "Progress panel note: The storyboard mentions a Livestock Farm, but the provided Word document does not include livestock screens. It is shown as content needed.",
+    "",
+  ];
+
+  locations.forEach((location) => {
+    lines.push(`${location.title.toUpperCase()} - EXPLORE SCENE`);
+    lines.push(`${location.title}. Explore the scene. ${location.intro}`);
+    lines.push(`Available hotspots: ${location.hotspots.map((hotspot) => hotspot.label).join(", ")}.`);
+    lines.push("");
+
+    location.hotspots.forEach((hotspot) => {
+      lines.push(`Hotspot: ${hotspot.label}`);
+      hotspot.dialogue.forEach((line) => {
+        lines.push(`${line.speaker}: ${line.text}`);
+      });
+      lines.push(`Terms added: ${hotspot.terms.join(", ")}.`);
+      if (hotspot.question) {
+        lines.push(`Knowledge check: ${hotspot.question.prompt}`);
+        hotspot.question.choices.forEach((choice) => {
+          lines.push(`Choice: ${choice.label}`);
+        });
+        lines.push(`Feedback: ${hotspot.question.feedback}`);
+      }
+      lines.push("");
+    });
+
+    lines.push(`${location.title.toUpperCase()} - CHALLENGE`);
+    lines.push(location.challenge.title);
+    lines.push(location.challenge.setup);
+    location.challenge.questions.forEach((question) => {
+      lines.push(`Question: ${question.prompt}`);
+      question.choices.forEach((choice) => {
+        lines.push(`Choice: ${choice.label}`);
+      });
+      lines.push(`Feedback: ${question.feedback}`);
+    });
+    lines.push(`Completion: ${location.summary} Badge earned: ${location.badge}.`);
+    lines.push("");
+  });
+
+  lines.push("FINAL CHALLENGE");
+  lines.push("Putting it all together. Conservation Professional Conversation Challenge. Recognize terms from multiple farm visits and choose a follow-up question that keeps the conversation productive.");
+  finalQuestions.forEach((question) => {
+    lines.push(`Question: ${question.prompt}`);
+    question.choices.forEach((choice) => {
+      lines.push(`Choice: ${choice.label}`);
+    });
+    lines.push(`Feedback: ${question.feedback}`);
+  });
+  lines.push("");
+  lines.push("COMPLETION");
+  lines.push("Training activity complete. Understanding farm terminology helps conservation professionals build rapport, ask better questions, and communicate more effectively with producers.");
+
+  return lines.join("\n");
+}
+
+function downloadTextFile(filename: string, text: string) {
+  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
 }
 
 type SoundName = "click" | "select" | "correct" | "incorrect" | "complete" | "open";
@@ -1104,6 +1187,7 @@ export default function Home() {
   const [showTranscript, setShowTranscript] = useState(false);
   const { soundEnabled, setSoundEnabled, playSound } = useAudioFeedback();
   const { narrationEnabled, isSpeaking, speak, toggleNarration } = useNarrator();
+  const welcomeAutoPlayed = useRef(false);
 
   useEffect(() => {
     const saved = window.localStorage.getItem("farm-terminology-progress");
@@ -1136,20 +1220,21 @@ export default function Home() {
 
   const narrationText = useMemo(() => {
     if (view.name === "welcome") {
-      return "Farm Terminology Explorer. Conservation officer training. Practice the language farmers use in real conversations. Visit crop, dairy, equipment, and conservation locations. Explore each scene, hear producer dialogue, answer quick checks, and collect terminology for later review.";
+      return welcomeNarration;
     }
     if (view.name === "map") {
-      return `Farm map. Choose a location to explore. ${progress.completedLocations.length} of ${activeLocationIds.length} active visits are complete. The storyboard mentions a Livestock Farm, but content was not provided yet.`;
+      return `${mapDirectionsNarration} ${progress.completedLocations.length} of ${activeLocationIds.length} active visits are complete.`;
     }
     if (view.name === "location") {
       const location = getLocation(view.locationId);
       if (activeHotspot) {
         const line = activeHotspot.dialogue[dialogueIndex];
         const question = activeHotspot.question;
+        const hotspotPrefix = dialogueIndex === 0 ? `${activeHotspot.label}. ` : "";
         if (dialogueIndex === activeHotspot.dialogue.length - 1 && question) {
-          return `${activeHotspot.label}. ${line.speaker}: ${line.text} New terms added: ${activeHotspot.terms.join(", ")}. Knowledge check. ${question.prompt} Choices: ${question.choices.map((choice) => choice.label).join(". ")}.`;
+          return `${hotspotPrefix}${line.speaker}: ${line.text} New terms added: ${activeHotspot.terms.join(", ")}. Knowledge check. ${question.prompt} Choices: ${question.choices.map((choice) => choice.label).join(". ")}.`;
         }
-        return `${activeHotspot.label}. ${line.speaker}: ${line.text}`;
+        return `${hotspotPrefix}${line.speaker}: ${line.text}`;
       }
       return `${location.title}. Explore the scene. ${location.intro}. Available hotspots: ${location.hotspots.map((hotspot) => hotspot.label).join(", ")}.`;
     }
@@ -1166,6 +1251,17 @@ export default function Home() {
   useEffect(() => {
     if (narrationEnabled) speak(narrationText);
   }, [narrationEnabled, narrationText, speak]);
+
+  useEffect(() => {
+    if (view.name !== "welcome" || welcomeAutoPlayed.current) return;
+    welcomeAutoPlayed.current = true;
+    window.setTimeout(() => speak(welcomeNarration), 350);
+  }, [speak, view.name]);
+
+  const downloadAudioScript = useCallback(() => {
+    playSound("click");
+    downloadTextFile("farm-terminology-explorer-audio-script.txt", buildAudioScript());
+  }, [playSound]);
 
   function addTerms(terms: string[]) {
     setProgress((current) => ({
@@ -1264,6 +1360,7 @@ export default function Home() {
           playSound("open");
           setShowTranscript(true);
         }}
+        onDownloadScript={downloadAudioScript}
         onReset={resetProgress}
         narrationEnabled={narrationEnabled}
         isSpeaking={isSpeaking}
@@ -1281,6 +1378,11 @@ export default function Home() {
 
       {view.name === "welcome" && (
         <Welcome
+          onPlayWelcome={() => {
+            playSound("click");
+            speak(welcomeNarration);
+          }}
+          onDownloadScript={downloadAudioScript}
           onStart={() => {
             playSound("open");
             resetTransient();
@@ -1431,6 +1533,7 @@ function Header({
   onMap,
   onGlossary,
   onTranscript,
+  onDownloadScript,
   onReset,
   narrationEnabled,
   isSpeaking,
@@ -1447,6 +1550,7 @@ function Header({
   onMap: () => void;
   onGlossary: () => void;
   onTranscript: () => void;
+  onDownloadScript: () => void;
   onReset: () => void;
   narrationEnabled: boolean;
   isSpeaking: boolean;
@@ -1480,13 +1584,22 @@ function Header({
         <button type="button" className="nav-button" onClick={onMap}>Map</button>
         <button type="button" className="nav-button" onClick={onGlossary}>Glossary</button>
         <button type="button" className="nav-button" onClick={onTranscript}>Transcript</button>
+        <button type="button" className="nav-button" onClick={onDownloadScript}>Audio Script</button>
         <button type="button" className="nav-button subtle" onClick={onReset}>Reset</button>
       </nav>
     </header>
   );
 }
 
-function Welcome({ onStart }: { onStart: () => void }) {
+function Welcome({
+  onPlayWelcome,
+  onDownloadScript,
+  onStart,
+}: {
+  onPlayWelcome: () => void;
+  onDownloadScript: () => void;
+  onStart: () => void;
+}) {
   return (
     <section className="welcome-screen">
         <div className="welcome-media" role="img" aria-label="Wisconsin farm landscape">
@@ -1503,6 +1616,12 @@ function Welcome({ onStart }: { onStart: () => void }) {
         <div className="welcome-actions">
           <button type="button" className="primary-button" onClick={onStart}>
             Start Farm Visit
+          </button>
+          <button type="button" className="secondary-button" onClick={onPlayWelcome}>
+            Play Welcome Audio
+          </button>
+          <button type="button" className="secondary-button" onClick={onDownloadScript}>
+            Download Audio Script
           </button>
           <span>Progress saves automatically on this device.</span>
         </div>
@@ -1528,7 +1647,8 @@ function FarmMap({
         <p className="eyebrow">Farm map</p>
         <h2>Choose a location to explore.</h2>
         <p>
-          Complete visits in any order. Completed locations stay available for review.
+          Select a location graphic or tab through the accessible buttons. Each visit opens
+          an exploration scene with hotspots, dialogue, quick checks, and a return-to-map path.
         </p>
       </div>
 
@@ -1544,12 +1664,14 @@ function FarmMap({
                 style={{ ["--pin-color" as string]: location.color }}
                 onClick={() => onOpenLocation(location.id)}
               >
+                <img src={asset(location.image)} alt="" />
                 <span>{complete ? "Complete" : "Visit"}</span>
                 <strong>{location.title}</strong>
               </button>
             );
           })}
           <div className="map-pin locked livestock" aria-label="Livestock farm content not yet provided">
+            <div className="map-placeholder-art" aria-hidden="true" />
             <span>Content needed</span>
             <strong>Livestock Farm</strong>
           </div>
