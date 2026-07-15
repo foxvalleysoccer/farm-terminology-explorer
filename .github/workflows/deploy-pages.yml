@@ -38,7 +38,7 @@ jobs:
       - name: Build static site
         run: pnpm run build:github-pages
         env:
-          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+          NEXT_PUBLIC_BASE_PATH: /farm-terminology-explorer.
 
       - name: Disable Jekyll
         run: touch out/.nojekyll
