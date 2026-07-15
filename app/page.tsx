@@ -1408,7 +1408,7 @@ export default function Home() {
         const question = activeHotspot.question;
         if (dialogueIndex === activeHotspot.dialogue.length - 1 && question) {
           return {
-            text: `${line.speaker}: ${line.text} New terms added: ${activeHotspot.terms.join(", ")}. Knowledge check. ${question.prompt} Choices: ${question.choices.map((choice) => choice.label).join(". ")}.`,
+            text: `${line.speaker}: ${line.text}`,
             audioId: `hotspot-${location.id}-${activeHotspot.id}-${dialogueIndex}-check`,
           };
         }
@@ -1432,13 +1432,13 @@ export default function Home() {
         };
       }
       return {
-        text: `${location.challenge.title}. ${location.challenge.setup}. Questions: ${location.challenge.questions.map((question) => `${question.prompt} Choices: ${question.choices.map((choice) => choice.label).join(". ")}`).join(". ")}`,
+        text: `${location.challenge.title}. ${location.challenge.setup}`,
         audioId: `challenge-${location.id}`,
       };
     }
     if (view.name === "final") {
       return {
-        text: `By now, you've encountered terminology related to crops, livestock, dairy operations, equipment, and conservation practices. Let's see how these terms come together in a real-world conversation. You do not need to be a farmer. You do not need to be an agronomist. Your goal is to recognize terminology, understand the context, and ask informed questions. ${finalQuestions.map((question) => `${question.prompt} Choices: ${question.choices.map((choice) => choice.label).join(". ")}`).join(". ")}`,
+        text: "By now, you've encountered terminology related to crops, livestock, dairy operations, equipment, and conservation practices. Let's see how these terms come together in a real-world conversation. You do not need to be a farmer. You do not need to be an agronomist. Your goal is to recognize terminology, understand the context, and ask informed questions.",
         audioId: "final",
       };
     }

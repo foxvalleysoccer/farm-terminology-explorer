@@ -57,9 +57,7 @@ for (const location of locations) {
       pushSegment(
         segments,
         `hotspot-${location.id}-${hotspot.id}-${index}${finalLineWithQuestion ? "-check" : ""}`,
-        finalLineWithQuestion
-          ? `${line.speaker}: ${line.text} New terms added: ${hotspot.terms.join(", ")}. Knowledge check. ${hotspot.question.prompt} Choices: ${choices(hotspot.question)}.`
-          : `${line.speaker}: ${line.text}`,
+        `${line.speaker}: ${line.text}`,
       );
     });
 
@@ -72,9 +70,7 @@ for (const location of locations) {
   pushSegment(
     segments,
     `challenge-${location.id}`,
-    `${location.challenge.title}. ${location.challenge.setup}. Questions: ${location.challenge.questions
-      .map((question) => `${question.prompt} Choices: ${choices(question)}`)
-      .join(". ")}`,
+    `${location.challenge.title}. ${location.challenge.setup}`,
   );
 
   for (const question of location.challenge.questions) {
@@ -94,9 +90,7 @@ for (const location of locations) {
 pushSegment(
   segments,
   "final",
-  `By now, you've encountered terminology related to crops, livestock, dairy operations, equipment, and conservation practices. Let's see how these terms come together in a real-world conversation. You do not need to be a farmer. You do not need to be an agronomist. Your goal is to recognize terminology, understand the context, and ask informed questions. ${finalQuestions
-    .map((question) => `${question.prompt} Choices: ${choices(question)}`)
-    .join(". ")}`,
+  "By now, you've encountered terminology related to crops, livestock, dairy operations, equipment, and conservation practices. Let's see how these terms come together in a real-world conversation. You do not need to be a farmer. You do not need to be an agronomist. Your goal is to recognize terminology, understand the context, and ask informed questions.",
 );
 
 for (const question of finalQuestions) {
