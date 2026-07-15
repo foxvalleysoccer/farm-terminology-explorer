@@ -58,8 +58,10 @@ type Location = {
     title: string;
     narration: string;
     transition: string;
-    matchPrompt: string;
-    matches: MatchPair[];
+    matchPrompt?: string;
+    matches?: MatchPair[];
+    feedback?: string;
+    badgeLabel?: string;
     xp: number;
   };
 };
@@ -325,6 +327,7 @@ const locations: Location[] = [
       transition:
         "Great work. Now let's visit a dairy operation and learn some of the terminology commonly used by dairy producers.",
       matchPrompt: "Match the term to its description.",
+      badgeLabel: "Crop Farm Explorer",
       xp: 20,
       matches: [
         {
@@ -567,17 +570,45 @@ const locations: Location[] = [
           feedback: "Culled animals are removed from the herd.",
         },
         {
-          id: "infra",
-          prompt: "Which facility stores cooled milk before processor pickup?",
+          id: "replacement-purpose",
+          prompt: "Why would a farmer raise replacement heifers?",
           type: "single",
           choices: [
-            { id: "bulk", label: "Bulk Tank" },
-            { id: "barn", label: "Free Stall Barn" },
-            { id: "grain", label: "Grain Bin" },
-            { id: "waterway", label: "Grassed Waterway" },
+            { id: "replace", label: "To replace animals that leave the herd" },
+            { id: "grain", label: "To increase grain production" },
+            { id: "manure", label: "To improve manure storage" },
+            { id: "reduce", label: "To reduce milk production" },
           ],
-          correct: ["bulk"],
-          feedback: "The bulk tank stores cooled milk before pickup.",
+          correct: ["replace"],
+          feedback: "Replacement heifers help maintain the future milking herd.",
+        },
+      ],
+    },
+    wrapUp: {
+      title: "Dairy Infrastructure Challenge",
+      narration:
+        "You've completed your visit to a Wisconsin dairy farm. Along the way, you learned about dairy cattle, herd management, animal life stages, housing systems, and milk handling. You also practiced recognizing and interpreting the terminology commonly used by dairy producers. As you continue exploring other farm types, you'll notice that while every operation is different, many of the communication skills you've practiced here will help you have more productive conversations with producers.",
+      transition:
+        "Next, let's visit the equipment yard and learn some of the terminology farmers use when talking about machinery and field work.",
+      matchPrompt: "Drag each label onto the correct facility.",
+      feedback: "Each structure plays an important role in the daily operation of a dairy farm.",
+      badgeLabel: "Dairy Terminology Explorer",
+      xp: 20,
+      matches: [
+        {
+          id: "free-stall-barn",
+          term: "Free Stall Barn",
+          description: "Housing where cows can move around freely, eat, drink, and choose where they rest",
+        },
+        {
+          id: "milkhouse",
+          term: "Milkhouse",
+          description: "Area with equipment used to cool and store milk after it leaves the parlor",
+        },
+        {
+          id: "bulk-tank",
+          term: "Bulk Tank",
+          description: "Tank that stores cooled milk until processor pickup",
         },
       ],
     },
@@ -819,6 +850,15 @@ const locations: Location[] = [
         },
       ],
     },
+    wrapUp: {
+      title: "Equipment Yard Summary",
+      narration:
+        "You've completed your visit to the equipment yard. Along the way, you explored the equipment farmers use throughout the growing season and learned how different machines support planting, harvesting, tillage, and crop establishment. While conservation professionals aren't expected to be machinery experts, recognizing common equipment can provide valuable context during conversations with producers.",
+      transition:
+        "Next, move to the edge of a field to connect equipment, tillage, and conservation practices.",
+      badgeLabel: "Equipment Recognition Badge",
+      xp: 15,
+    },
   },
   {
     id: "conservation",
@@ -946,6 +986,15 @@ const locations: Location[] = [
         },
       ],
     },
+    wrapUp: {
+      title: "Conservation Summary",
+      narration:
+        "You've completed your visit to the Conservation Area. During this visit, you explored several conservation practices that help protect soil and water while supporting productive farming operations. You also practiced recognizing the terminology farmers use when discussing conservation efforts on their land.",
+      transition:
+        "Now let's see how these terms come together in a real-world conversation.",
+      badgeLabel: "Conservation Practices Explorer",
+      xp: 15,
+    },
   },
 ];
 
@@ -1068,10 +1117,11 @@ function buildAudioScript() {
     if (location.wrapUp) {
       lines.push(`${location.title.toUpperCase()} - WRAP-UP`);
       lines.push(location.wrapUp.narration);
-      lines.push(`Activity: ${location.wrapUp.matchPrompt}`);
-      location.wrapUp.matches.forEach((match) => {
+      if (location.wrapUp.matchPrompt) lines.push(`Activity: ${location.wrapUp.matchPrompt}`);
+      location.wrapUp.matches?.forEach((match) => {
         lines.push(`${match.term}: ${match.description}`);
       });
+      if (location.wrapUp.feedback) lines.push(`Feedback: ${location.wrapUp.feedback}`);
       lines.push(`Transition: ${location.wrapUp.transition}`);
     }
     lines.push(`Completion: ${location.summary} Badge earned: ${location.badge}.`);
@@ -1079,7 +1129,8 @@ function buildAudioScript() {
   });
 
   lines.push("FINAL CHALLENGE");
-  lines.push("Putting it all together. Conservation Professional Conversation Challenge. Recognize terms from multiple farm visits and choose a follow-up question that keeps the conversation productive.");
+  lines.push("By now, you've encountered terminology related to crops, livestock, dairy operations, equipment, and conservation practices. Let's see how these terms come together in a real-world conversation.");
+  lines.push("You do not need to be a farmer. You do not need to be an agronomist. Your goal is to recognize terminology, understand the context, and ask informed questions.");
   finalQuestions.forEach((question) => {
     lines.push(`Question: ${question.prompt}`);
     question.choices.forEach((choice) => {
@@ -1089,7 +1140,8 @@ function buildAudioScript() {
   });
   lines.push("");
   lines.push("COMPLETION");
-  lines.push("Training activity complete. Understanding farm terminology helps conservation professionals build rapport, ask better questions, and communicate more effectively with producers.");
+  lines.push("During this activity, you've explored crop farming, dairy operations, farm equipment, and conservation practices. You've encountered terminology used by farmers every day and practiced recognizing those terms in realistic conversations.");
+  lines.push("Understanding farm terminology helps conservation professionals build rapport, ask better questions, and communicate more effectively with producers. You do not need to know everything about farming. But understanding the language farmers use can help you better understand the operations, challenges, and conservation practices you encounter in the field.");
 
   return lines.join("\n");
 }
@@ -1386,12 +1438,12 @@ export default function Home() {
     }
     if (view.name === "final") {
       return {
-        text: `Putting it all together. Conservation Professional Conversation Challenge. Recognize terms from multiple farm visits and choose a follow-up question that keeps the conversation productive. ${finalQuestions.map((question) => `${question.prompt} Choices: ${question.choices.map((choice) => choice.label).join(". ")}`).join(". ")}`,
+        text: `By now, you've encountered terminology related to crops, livestock, dairy operations, equipment, and conservation practices. Let's see how these terms come together in a real-world conversation. You do not need to be a farmer. You do not need to be an agronomist. Your goal is to recognize terminology, understand the context, and ask informed questions. ${finalQuestions.map((question) => `${question.prompt} Choices: ${question.choices.map((choice) => choice.label).join(". ")}`).join(". ")}`,
         audioId: "final",
       };
     }
     return {
-      text: `Training activity complete. Understanding farm terminology helps conservation professionals build rapport, ask better questions, and communicate more effectively with producers. You explored ${progress.completedLocations.length} locations, learned ${progress.learnedTerms.length} terms, and earned ${progress.xp} XP.`,
+      text: `Training activity complete. Understanding farm terminology helps conservation professionals build rapport, ask better questions, and communicate more effectively with producers. You do not need to know everything about farming, but understanding the language farmers use can help you better understand the operations, challenges, and conservation practices you encounter in the field. You explored ${progress.completedLocations.length} locations, learned ${progress.learnedTerms.length} terms, and earned ${progress.xp} XP.`,
       audioId: "complete",
     };
   }, [activeHotspot, dialogueIndex, progress.completedLocations.length, progress.learnedTerms.length, progress.xp, submitted, view]);
@@ -2068,10 +2120,11 @@ function ChallengeView({
   onComplete: (location: Location) => void;
 }) {
   const done = location.challenge.questions.every((question) => submitted[question.id]);
+  const wrapUpMatches = location.wrapUp?.matches ?? [];
   const wrapUpComplete =
     !location.wrapUp ||
     wrapUpDone ||
-    location.wrapUp.matches.every((match) => matchAnswers[match.id] === match.id);
+    (wrapUpMatches.length === 0 ? false : wrapUpMatches.every((match) => matchAnswers[match.id] === match.id));
   const canComplete = done && wrapUpComplete;
   return (
     <section className="challenge-screen">
@@ -2125,7 +2178,10 @@ function DragMatchActivity({
   onComplete: () => void;
 }) {
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
-  const availableMatches = wrapUp.matches.filter((match) => !answers[match.id]);
+  const matches = wrapUp.matches ?? [];
+  const hasMatches = matches.length > 0;
+  const canSave = saved || !hasMatches || complete;
+  const availableMatches = matches.filter((match) => !answers[match.id]);
 
   function placeTerm(descriptionId: string) {
     if (!selectedTerm) return;
@@ -2143,65 +2199,71 @@ function DragMatchActivity({
         </div>
         <div className="badge-card">
           <span>Badge</span>
-          <strong>Crop Farm Explorer</strong>
+          <strong>{wrapUp.badgeLabel ?? "Visit Complete"}</strong>
         </div>
       </div>
 
-      <h4>{wrapUp.matchPrompt}</h4>
-      <div className="drag-match-grid">
-        <div className="term-bank" aria-label="Terms to match">
-          <h5>Terms</h5>
-          {availableMatches.length === 0 ? (
-            <p className="hint">All terms placed.</p>
-          ) : (
-            availableMatches.map((match) => (
-              <button
-                key={match.id}
-                type="button"
-                className={`term-chip ${selectedTerm === match.id ? "selected" : ""}`}
-                draggable
-                onClick={() => setSelectedTerm((current) => (current === match.id ? null : match.id))}
-                onDragStart={(event) => event.dataTransfer.setData("text/plain", match.id)}
-              >
-                {match.term}
-              </button>
-            ))
-          )}
-        </div>
+      {hasMatches && (
+        <>
+          <h4>{wrapUp.matchPrompt}</h4>
+          <div className="drag-match-grid">
+            <div className="term-bank" aria-label="Terms to match">
+              <h5>Terms</h5>
+              {availableMatches.length === 0 ? (
+                <p className="hint">All terms placed.</p>
+              ) : (
+                availableMatches.map((match) => (
+                  <button
+                    key={match.id}
+                    type="button"
+                    className={`term-chip ${selectedTerm === match.id ? "selected" : ""}`}
+                    draggable
+                    onClick={() => setSelectedTerm((current) => (current === match.id ? null : match.id))}
+                    onDragStart={(event) => event.dataTransfer.setData("text/plain", match.id)}
+                  >
+                    {match.term}
+                  </button>
+                ))
+              )}
+            </div>
 
-        <div className="match-targets">
-          {wrapUp.matches.map((match) => {
-            const placedTermId = Object.entries(answers).find(([, descriptionId]) => descriptionId === match.id)?.[0];
-            const placedTerm = wrapUp.matches.find((candidate) => candidate.id === placedTermId);
-            const correct = placedTerm?.id === match.id;
-            return (
-              <button
-                key={match.id}
-                type="button"
-                className={`match-target ${placedTerm ? "filled" : ""} ${correct ? "correct" : ""}`}
-                onClick={() => {
-                  if (selectedTerm) {
-                    placeTerm(match.id);
-                    return;
-                  }
-                  if (placedTerm) onMatch(placedTerm.id, "");
-                }}
-                onDragOver={(event) => event.preventDefault()}
-                onDrop={(event) => {
-                  event.preventDefault();
-                  const termId = event.dataTransfer.getData("text/plain");
-                  if (termId) onMatch(termId, match.id);
-                }}
-              >
-                <span>{match.description}</span>
-                <strong>{placedTerm?.term ?? "Drop term here"}</strong>
-              </button>
-            );
-          })}
-        </div>
-      </div>
+            <div className="match-targets">
+              {matches.map((match) => {
+                const placedTermId = Object.entries(answers).find(([, descriptionId]) => descriptionId === match.id)?.[0];
+                const placedTerm = matches.find((candidate) => candidate.id === placedTermId);
+                const correct = placedTerm?.id === match.id;
+                return (
+                  <button
+                    key={match.id}
+                    type="button"
+                    className={`match-target ${placedTerm ? "filled" : ""} ${correct ? "correct" : ""}`}
+                    onClick={() => {
+                      if (selectedTerm) {
+                        placeTerm(match.id);
+                        return;
+                      }
+                      if (placedTerm) onMatch(placedTerm.id, "");
+                    }}
+                    onDragOver={(event) => event.preventDefault()}
+                    onDrop={(event) => {
+                      event.preventDefault();
+                      const termId = event.dataTransfer.getData("text/plain");
+                      if (termId) onMatch(termId, match.id);
+                    }}
+                  >
+                    <span>{match.description}</span>
+                    <strong>{placedTerm?.term ?? "Drop term here"}</strong>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </>
+      )}
 
-      {complete && !saved && (
+      {wrapUp.feedback && hasMatches && complete && <p className="feedback correct">{wrapUp.feedback}</p>}
+
+      {canSave && !saved && (
         <button type="button" className="primary-button" onClick={onComplete}>
           Save Wrap-Up Progress
         </button>
@@ -2235,8 +2297,8 @@ function FinalChallenge({
         <p className="eyebrow">Putting it all together</p>
         <h2>Conservation Professional Conversation Challenge</h2>
         <p>
-          This is the final scenario. Recognize terms from multiple farm visits and
-          choose a follow-up question that keeps the conversation productive.
+          You do not need to be a farmer. You do not need to be an agronomist.
+          Your goal is to recognize terminology, understand the context, and ask informed questions.
         </p>
       </div>
       <div className="question-stack">
@@ -2252,14 +2314,19 @@ function FinalChallenge({
         ))}
       </div>
       <div className="reflection-panel">
-        <h3>Reflection</h3>
+        <p className="eyebrow">Farm Visit Reflection</p>
+        <h3>During this activity, you explored crop farming, dairy operations, farm equipment, and conservation practices.</h3>
+        <p>
+          You encountered terminology used by farmers every day and practiced recognizing
+          those terms in realistic conversations.
+        </p>
         <p>Which area do you feel most comfortable discussing?</p>
         <div className="reflection-options" aria-label="Reflection options">
           {["Crop Production", "Dairy Operations", "Equipment", "Conservation Practices"].map((label) => (
             <button type="button" key={label} className="nav-button">{label}</button>
           ))}
         </div>
-        <p className="hint">Reflection is not scored. You have collected {learnedTerms.length} terms.</p>
+        <p className="hint">Optional and not scored. You have collected {learnedTerms.length} terms.</p>
       </div>
       <button type="button" className="primary-button" disabled={!done} onClick={onComplete}>
         {finalComplete ? "View Completion" : "Earn Completion Badge"}
@@ -2278,6 +2345,9 @@ function Completion({ progress, onMap }: { progress: SavedProgress; onMap: () =>
       <p>
         Understanding farm terminology helps conservation professionals build rapport,
         ask better questions, and communicate more effectively with producers.
+        You do not need to know everything about farming, but understanding the language
+        farmers use can help you better understand the operations, challenges, and
+        conservation practices you encounter in the field.
       </p>
       <div className="result-grid">
         <div><strong>{progress.completedLocations.length}</strong><span>Locations explored</span></div>

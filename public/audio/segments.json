@@ -261,7 +261,7 @@
   },
   {
     "id": "challenge-dairy",
-    "text": "Dairy Conversation Challenge. Farmer: One of our replacement heifers should join the milking herd later this year. We have also got a group of dry cows that will calve soon.. Questions: Select all terms you recognize. Choices: Replacement Heifer. Milking Herd. Dry Cow. Grain Bin. Chisel Plow. The farmer says they culled a few older cows. What does culled mean? Choices: Removed from the herd. Added to the herd. Moved to another pasture. Vaccinated. Which facility stores cooled milk before processor pickup? Choices: Bulk Tank. Free Stall Barn. Grain Bin. Grassed Waterway"
+    "text": "Dairy Conversation Challenge. Farmer: One of our replacement heifers should join the milking herd later this year. We have also got a group of dry cows that will calve soon.. Questions: Select all terms you recognize. Choices: Replacement Heifer. Milking Herd. Dry Cow. Grain Bin. Chisel Plow. The farmer says they culled a few older cows. What does culled mean? Choices: Removed from the herd. Added to the herd. Moved to another pasture. Vaccinated. Why would a farmer raise replacement heifers? Choices: To replace animals that leave the herd. To increase grain production. To improve manure storage. To reduce milk production"
   },
   {
     "id": "feedback-dairy-recognize-correct",
@@ -280,12 +280,16 @@
     "text": "Review this one. Culled animals are removed from the herd."
   },
   {
-    "id": "feedback-infra-correct",
-    "text": "Correct. The bulk tank stores cooled milk before pickup."
+    "id": "feedback-replacement-purpose-correct",
+    "text": "Correct. Replacement heifers help maintain the future milking herd."
   },
   {
-    "id": "feedback-infra-review",
-    "text": "Review this one. The bulk tank stores cooled milk before pickup."
+    "id": "feedback-replacement-purpose-review",
+    "text": "Review this one. Replacement heifers help maintain the future milking herd."
+  },
+  {
+    "id": "wrapup-dairy",
+    "text": "You've completed your visit to a Wisconsin dairy farm. Along the way, you learned about dairy cattle, herd management, animal life stages, housing systems, and milk handling. You also practiced recognizing and interpreting the terminology commonly used by dairy producers. As you continue exploring other farm types, you'll notice that while every operation is different, many of the communication skills you've practiced here will help you have more productive conversations with producers. Drag each label onto the correct facility. Each structure plays an important role in the daily operation of a dairy farm."
   },
   {
     "id": "location-equipment",
@@ -460,6 +464,10 @@
     "text": "Review this one. Corn silage is commonly harvested with a chopper."
   },
   {
+    "id": "wrapup-equipment",
+    "text": "You've completed your visit to the equipment yard. Along the way, you explored the equipment farmers use throughout the growing season and learned how different machines support planting, harvesting, tillage, and crop establishment. While conservation professionals aren't expected to be machinery experts, recognizing common equipment can provide valuable context during conversations with producers."
+  },
+  {
     "id": "location-conservation",
     "text": "Conservation Area. Explore the scene. Move to the edge of a field where conservation practices are visible. Explore terms farmers may use when talking about soil and water protection.. Available hotspots: Farmer, Grassed Waterway, Buffer Strip, Tile Drainage Outlet, Cover Crop Field."
   },
@@ -520,8 +528,12 @@
     "text": "Review this one. Grassed waterways, buffer strips, and tile drainage are conservation-related features in this module."
   },
   {
+    "id": "wrapup-conservation",
+    "text": "You've completed your visit to the Conservation Area. During this visit, you explored several conservation practices that help protect soil and water while supporting productive farming operations. You also practiced recognizing the terminology farmers use when discussing conservation efforts on their land."
+  },
+  {
     "id": "final",
-    "text": "Putting it all together. Conservation Professional Conversation Challenge. Recognize terms from multiple farm visits and choose a follow-up question that keeps the conversation productive. Farmer: We finished chopping silage last week. We planted cover crops right afterward and may chop them in spring for replacement heifer feed. We are adding soybeans into our rotation and checking the nutrient management plan. Which terms did you hear? Choices: Silage. Cover Crop. Replacement Heifer. Yield. Nutrient Management Plan. Crop Rotation. Farmer: This field was soybeans last year, so it will go into corn as part of the rotation. After harvest, we drill in a cover crop. This field gets wet and has drain tile to manage excess water. Which terms did you hear? Choices: Crop Rotation. Cover Crop. Tile Drainage. Nutrient Management Plan. Bulk Tank. Dry Cow. Which follow-up question would be most appropriate? Choices: Can you tell me more about your cover crop strategy?. How many gallons of milk does your bulk tank hold?. What breed are your dairy cows?. How much grain fits in your silo?"
+    "text": "By now, you've encountered terminology related to crops, livestock, dairy operations, equipment, and conservation practices. Let's see how these terms come together in a real-world conversation. You do not need to be a farmer. You do not need to be an agronomist. Your goal is to recognize terminology, understand the context, and ask informed questions. Farmer: We finished chopping silage last week. We planted cover crops right afterward and may chop them in spring for replacement heifer feed. We are adding soybeans into our rotation and checking the nutrient management plan. Which terms did you hear? Choices: Silage. Cover Crop. Replacement Heifer. Yield. Nutrient Management Plan. Crop Rotation. Farmer: This field was soybeans last year, so it will go into corn as part of the rotation. After harvest, we drill in a cover crop. This field gets wet and has drain tile to manage excess water. Which terms did you hear? Choices: Crop Rotation. Cover Crop. Tile Drainage. Nutrient Management Plan. Bulk Tank. Dry Cow. Which follow-up question would be most appropriate? Choices: Can you tell me more about your cover crop strategy?. How many gallons of milk does your bulk tank hold?. What breed are your dairy cows?. How much grain fits in your silo?"
   },
   {
     "id": "feedback-final-terms-correct",
@@ -549,6 +561,6 @@
   },
   {
     "id": "complete",
-    "text": "Training activity complete. Understanding farm terminology helps conservation professionals build rapport, ask better questions, and communicate more effectively with producers."
+    "text": "During this activity, you've explored crop farming, dairy operations, farm equipment, and conservation practices. You've encountered terminology used by farmers every day and practiced recognizing those terms in realistic conversations. Understanding farm terminology helps conservation professionals build rapport, ask better questions, and communicate more effectively with producers. You do not need to know everything about farming. But understanding the language farmers use can help you better understand the operations, challenges, and conservation practices you encounter in the field."
   }
 ]

@@ -83,14 +83,18 @@ for (const location of locations) {
   }
 
   if (location.wrapUp) {
-    pushSegment(segments, `wrapup-${location.id}`, `${location.wrapUp.narration} ${location.wrapUp.matchPrompt}`);
+    pushSegment(
+      segments,
+      `wrapup-${location.id}`,
+      `${location.wrapUp.narration} ${location.wrapUp.matchPrompt ?? ""} ${location.wrapUp.feedback ?? ""}`.trim(),
+    );
   }
 }
 
 pushSegment(
   segments,
   "final",
-  `Putting it all together. Conservation Professional Conversation Challenge. Recognize terms from multiple farm visits and choose a follow-up question that keeps the conversation productive. ${finalQuestions
+  `By now, you've encountered terminology related to crops, livestock, dairy operations, equipment, and conservation practices. Let's see how these terms come together in a real-world conversation. You do not need to be a farmer. You do not need to be an agronomist. Your goal is to recognize terminology, understand the context, and ask informed questions. ${finalQuestions
     .map((question) => `${question.prompt} Choices: ${choices(question)}`)
     .join(". ")}`,
 );
@@ -103,7 +107,7 @@ for (const question of finalQuestions) {
 pushSegment(
   segments,
   "complete",
-  "Training activity complete. Understanding farm terminology helps conservation professionals build rapport, ask better questions, and communicate more effectively with producers.",
+  "During this activity, you've explored crop farming, dairy operations, farm equipment, and conservation practices. You've encountered terminology used by farmers every day and practiced recognizing those terms in realistic conversations. Understanding farm terminology helps conservation professionals build rapport, ask better questions, and communicate more effectively with producers. You do not need to know everything about farming. But understanding the language farmers use can help you better understand the operations, challenges, and conservation practices you encounter in the field.",
 );
 
 await mkdir(path.dirname(outputPath), { recursive: true });
