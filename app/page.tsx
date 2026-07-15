@@ -1897,7 +1897,12 @@ function FarmMap({
       </div>
 
       <div className="map-layout">
-        <div className="farm-map-art" role="img" aria-label="Illustrated map of farm visit locations">
+        <div
+          className="farm-map-art"
+          role="img"
+          aria-label="Illustrated map of farm visit locations"
+          style={{ ["--map-bg" as string]: `url("${asset("/location-art/farm-map-background.png")}")` }}
+        >
           {locations.map((location) => {
             const complete = progress.completedLocations.includes(location.id);
             return (

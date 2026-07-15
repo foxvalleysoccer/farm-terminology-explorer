@@ -285,11 +285,12 @@ button:disabled {
 
 .farm-map-art {
   background:
-    radial-gradient(circle at 24% 24%, rgba(47, 125, 50, 0.42), transparent 26%),
-    radial-gradient(circle at 76% 24%, rgba(20, 105, 168, 0.36), transparent 24%),
-    radial-gradient(circle at 31% 78%, rgba(196, 99, 26, 0.34), transparent 25%),
-    radial-gradient(circle at 76% 76%, rgba(8, 123, 131, 0.34), transparent 25%),
+    linear-gradient(180deg, rgba(255, 253, 247, 0.06), rgba(24, 37, 31, 0.08)),
+    var(--map-bg),
     linear-gradient(135deg, #dfeccf, #e6d6bd);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .farm-map-art::after {
