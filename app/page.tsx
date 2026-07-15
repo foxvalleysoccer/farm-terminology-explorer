@@ -1230,11 +1230,10 @@ export default function Home() {
       if (activeHotspot) {
         const line = activeHotspot.dialogue[dialogueIndex];
         const question = activeHotspot.question;
-        const hotspotPrefix = dialogueIndex === 0 ? `${activeHotspot.label}. ` : "";
         if (dialogueIndex === activeHotspot.dialogue.length - 1 && question) {
-          return `${hotspotPrefix}${line.speaker}: ${line.text} New terms added: ${activeHotspot.terms.join(", ")}. Knowledge check. ${question.prompt} Choices: ${question.choices.map((choice) => choice.label).join(". ")}.`;
+          return `${line.speaker}: ${line.text} New terms added: ${activeHotspot.terms.join(", ")}. Knowledge check. ${question.prompt} Choices: ${question.choices.map((choice) => choice.label).join(". ")}.`;
         }
-        return `${hotspotPrefix}${line.speaker}: ${line.text}`;
+        return `${line.speaker}: ${line.text}`;
       }
       return `${location.title}. Explore the scene. ${location.intro}. Available hotspots: ${location.hotspots.map((hotspot) => hotspot.label).join(", ")}.`;
     }
