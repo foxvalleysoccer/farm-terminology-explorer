@@ -1361,6 +1361,8 @@ export default function Home() {
   const { soundEnabled, setSoundEnabled, playSound } = useAudioFeedback();
   const { narrationEnabled, isSpeaking, speak, toggleNarration } = useNarrator();
   const welcomeAutoPlayed = useRef(false);
+  const previousNarrationEnabled = useRef(false);
+  const lastAutoNarrationKey = useRef("");
 
   useEffect(() => {
     const saved = window.localStorage.getItem("farm-terminology-progress");
@@ -1449,8 +1451,25 @@ export default function Home() {
   }, [activeHotspot, dialogueIndex, progress.completedLocations.length, progress.learnedTerms.length, progress.xp, submitted, view]);
 
   useEffect(() => {
-    if (narrationEnabled) speak(narrationCue.text, narrationCue.audioId);
-  }, [narrationCue, narrationEnabled, speak]);
+    const cueKey = `${narrationCue.audioId}::${narrationCue.text}`;
+
+    if (!narrationEnabled) {
+      previousNarrationEnabled.current = false;
+      lastAutoNarrationKey.current = "";
+      return;
+    }
+
+    if (!previousNarrationEnabled.current) {
+      previousNarrationEnabled.current = true;
+      lastAutoNarrationKey.current = cueKey;
+      return;
+    }
+
+    if (lastAutoNarrationKey.current === cueKey) return;
+
+    lastAutoNarrationKey.current = cueKey;
+    speak(narrationCue.text, narrationCue.audioId);
+  }, [narrationCue.audioId, narrationCue.text, narrationEnabled, speak]);
 
   useEffect(() => {
     if (view.name !== "welcome" || welcomeAutoPlayed.current) return;
